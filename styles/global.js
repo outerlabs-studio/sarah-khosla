@@ -1,5 +1,7 @@
 'use client'
+
 import { createGlobalStyle } from 'styled-components'
+import SmoothScroll from './scroll'
 
 // https://github.com/necolas/normalize.css
 const normalize = `
@@ -8,6 +10,7 @@ const normalize = `
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
+  ${SmoothScroll}
 
   :root {
     --black: 0, 0, 1;
@@ -18,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   ::selection {
-    background: rgba(var(--whitee), 0.2);
+    background: rgba(var(--white), 0.3);
   }
   /* * {
     border: 1px solid #f00 !important;

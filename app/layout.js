@@ -1,6 +1,7 @@
-import StyledComponentsRegistry from '@/lib/registry'
 import localFont from 'next/font/local'
-import { GlobalStyle } from '@/styles'
+import { GlobalStyle } from 'styles'
+import { StyledComponentsRegistry, RealViewport } from 'lib'
+import { Nav, ScrollWrapper } from 'components'
 
 const haffer = localFont({
   src: [
@@ -43,7 +44,11 @@ export default function RootLayout({ children }) {
       <body className={haffer.className}>
         <StyledComponentsRegistry>
           <GlobalStyle />
-          {children}
+          <RealViewport />
+          <ScrollWrapper>
+            <Nav />
+            {children}
+          </ScrollWrapper>
         </StyledComponentsRegistry>
       </body>
     </html>
