@@ -14,12 +14,8 @@ const StyledLink = styled.a`
   line-height: 130%;
   text-decoration: ${(props) => (props.underline ? 'underline' : 'none')};
   color: ${(props) => props.color || 'var(--white)'};
-  transition: opacity 0.2s ease-in-out;
+  /* transition: opacity 0.2s ease-in-out; */
   cursor: pointer;
-
-  :hover {
-    opacity: 0.5;
-  }
 `
 
 /**

@@ -3,8 +3,12 @@
 import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import Router from 'next/router'
+import { initializeAnimations, useLenisWithRefresh } from 'lib'
 
 export default function ScrollWrapper({ children }) {
+  initializeAnimations()
+  useLenisWithRefresh()
+
   const lenis = useLenis()
 
   useEffect(() => {

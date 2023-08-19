@@ -9,19 +9,14 @@ export const SectionWrapper = styled.section`
   z-index: ${Z.SECTION};
 `
 export const ProjectGrid = styled.div`
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-`
-export const Column = styled.div`
-  flex: calc(100% / 3);
-  max-width: calc(100% / 3);
-  padding: 0 1rem;
+  columns: 3;
+  gap: 1rem;
 `
 export const ProjectWrapper = styled.div`
   position: relative;
   height: fit-content;
+  width: 100%;
+  margin-bottom: 2.25rem;
 
   img {
     width: 100%;

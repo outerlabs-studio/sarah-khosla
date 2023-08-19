@@ -20,3 +20,9 @@ export const Column = styled.div`
   display: flex;
   justify-content: space-between;
 `
+export const DescriptionWrapper = styled.div`
+  max-width: 10rem;
+`
+export const LineWrapper = styled.div`
+  overflow: hidden;
+`

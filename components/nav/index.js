@@ -1,5 +1,11 @@
 import { ArticleBase, Container } from 'styles'
-import { Column, NavWrapper, PageHeader } from './styles'
+import {
+  Column,
+  DescriptionWrapper,
+  LineWrapper,
+  NavWrapper,
+  PageHeader,
+} from './styles'
 import { CustomLink } from 'components'
 
 const Nav = () => {
@@ -12,11 +18,12 @@ const Nav = () => {
               Sarah Khosla
               <br /> Graphic Design & Art Direction
             </ArticleBase>
-            <ArticleBase>
-              Previously a Sr. Art Director
-              <br /> at Stink Studios, currently <br />
-              freelancing.
-            </ArticleBase>
+            <DescriptionWrapper>
+              <ArticleBase>
+                Previously a Sr. Art Director at Stink Studios, currently
+                freelancing.
+              </ArticleBase>
+            </DescriptionWrapper>
           </Column>
           <Column>
             <CustomLink href="/">Selected work</CustomLink>
