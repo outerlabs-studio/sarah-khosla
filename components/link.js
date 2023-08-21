@@ -49,6 +49,12 @@ const CustomLink = (props) => {
       </Link>
     )
   }
+
+  return (
+    <StyledLink color={color} underline={underline} {...rest}>
+      {children}
+    </StyledLink>
+  )
 }
 
 export default CustomLink
