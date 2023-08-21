@@ -1,5 +1,3 @@
-'use client'
-
 import { styled } from 'styled-components'
 
 export const ArticleBase = styled.p`

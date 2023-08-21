@@ -1,4 +1,3 @@
-'use client'
 /**
  * @file link.js
  * @desc A custom link component with styled anchor tags and Next.js Link integration.

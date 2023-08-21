@@ -1,5 +1,3 @@
-'use client'
-
 import { css } from 'styled-components'
 
 const SmoothScroll = css`

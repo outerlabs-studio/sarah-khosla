@@ -1,5 +1,3 @@
-'use client'
-
 import { styled } from 'styled-components'
 import { Z } from 'styles'
 

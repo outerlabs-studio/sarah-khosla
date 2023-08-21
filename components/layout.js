@@ -1,14 +1,9 @@
-'use client'
-
 import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import Router from 'next/router'
-import { initializeAnimations, useLenisWithRefresh } from 'lib'
+import { Nav, Footer } from 'components'
 
-export default function ScrollWrapper({ children }) {
-  initializeAnimations()
-  useLenisWithRefresh()
-
+export default function Layout({ children }) {
   const lenis = useLenis()
 
   useEffect(() => {
@@ -24,5 +19,13 @@ export default function ScrollWrapper({ children }) {
     }
   }, [lenis])
 
-  return <Lenis root>{children}</Lenis>
+  return (
+    <>
+      <Lenis root>
+        <Nav />
+        {children}
+        <Footer />
+      </Lenis>
+    </>
+  )
 }

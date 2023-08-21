@@ -1,5 +1,3 @@
-'use client'
-
 import { styled } from 'styled-components'
 import { Z } from 'styles'
 
@@ -27,12 +25,14 @@ export const ProjectWrapper = styled.a`
 
   :hover {
     opacity: 0;
+    visibility: hidden;
   }
 
   .top {
     position: relative;
     z-index: 4;
     opacity: 1;
+    visibility: visible;
   }
 
   .bottom {

@@ -1,6 +1,7 @@
-import { ProjectGrid, ProjectWrapper, SectionWrapper } from 'components/work'
+import { Layout } from 'components'
 import { Container } from 'styles'
 import Image from 'next/image'
+import { ProjectGrid, ProjectWrapper, SectionWrapper } from 'components/work'
 import { ArticleBase, TitleHeader } from 'styles/text'
 
 const items = [
@@ -45,35 +46,37 @@ const items = [
 // to-do: add blur-hash to images
 export default function Home() {
   return (
-    <SectionWrapper>
-      <Container>
-        <TitleHeader>Work:</TitleHeader>
-        <ProjectGrid>
-          {items.map((item) => (
-            <ProjectWrapper key={item.title}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                quality={90}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="top"
-              />
-              <Image
-                src={item.gif}
-                alt={item.title}
-                quality={90}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="bottom"
-              />
-              <ArticleBase>{item.title}</ArticleBase>
-            </ProjectWrapper>
-          ))}
-        </ProjectGrid>
-      </Container>
-    </SectionWrapper>
+    <Layout>
+      <SectionWrapper>
+        <Container>
+          <TitleHeader>Work:</TitleHeader>
+          <ProjectGrid>
+            {items.map((item) => (
+              <ProjectWrapper key={item.title}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  quality={90}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="top"
+                />
+                <Image
+                  src={item.gif}
+                  alt={item.title}
+                  quality={90}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="bottom"
+                />
+                <ArticleBase>{item.title}</ArticleBase>
+              </ProjectWrapper>
+            ))}
+          </ProjectGrid>
+        </Container>
+      </SectionWrapper>
+    </Layout>
   )
 }

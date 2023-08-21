@@ -1,7 +1,6 @@
-'use client'
-
 import { createGlobalStyle } from 'styled-components'
 import SmoothScroll from './scroll'
+import { haffer } from './fonts'
 
 // https://github.com/necolas/normalize.css
 const normalize = `
@@ -15,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --black: 0, 0, 1;
     --white: 255, 255, 255;
+    --font: ${haffer.style.fontFamily};
   }
   html {
     box-sizing: border-box;
@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     background: rgb(var(--black));
     color: rgb(var(--white));
+    font-family: var(--font);
     overscroll-behavior-y: none;
   }
 `
