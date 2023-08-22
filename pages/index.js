@@ -1,8 +1,10 @@
+import { useEffect } from 'react'
 import { Layout } from 'components'
 import { Container } from 'styles'
 import Image from 'next/image'
-import { ProjectGrid, ProjectWrapper, SectionWrapper } from 'components/work'
+import { ProjectWrapper, SectionWrapper } from 'components/work'
 import { ArticleBase, TitleHeader } from 'styles/text'
+import Masonry from 'react-responsive-masonry'
 
 const items = [
   {
@@ -12,28 +14,28 @@ const items = [
     link: '/hbo',
   },
   {
-    title: 'Target, GiftNow',
-    image: '/images/giftnow/cover.jpg',
-    gif: '/images/giftnow/video.gif',
-    link: '/giftnow',
-  },
-  {
     title: 'Quativa, All-in-one',
     image: '/images/quativa/cover.jpg',
     gif: '/images/quativa/video.gif',
     link: '/quativa',
   },
   {
-    title: 'Iggy Rosales',
-    image: '/images/iggy/cover.jpg',
-    gif: '/images/iggy/video.gif',
-    link: '/iggy',
-  },
-  {
     title: 'Templum, Next Generation',
     image: '/images/templum/cover.jpg',
     gif: '/images/templum/video.gif',
     link: '/templum',
+  },
+  {
+    title: 'Target, GiftNow',
+    image: '/images/giftnow/cover.jpg',
+    gif: '/images/giftnow/video.gif',
+    link: '/giftnow',
+  },
+  {
+    title: 'Iggy Rosales',
+    image: '/images/iggy/cover.jpg',
+    gif: '/images/iggy/video.gif',
+    link: '/iggy',
   },
   {
     title: 'All Day Kitchens',
@@ -44,15 +46,15 @@ const items = [
 ]
 
 // to-do: add blur-hash to images
-export default function Home() {
+function Home() {
   return (
     <Layout>
       <SectionWrapper>
         <Container>
           <TitleHeader>Work:</TitleHeader>
-          <ProjectGrid>
-            {items.map((item) => (
-              <ProjectWrapper key={item.title}>
+          <Masonry columnsCount={3} gutter="1rem">
+            {items.map((item, i) => (
+              <ProjectWrapper key={i}>
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -74,9 +76,11 @@ export default function Home() {
                 <ArticleBase>{item.title}</ArticleBase>
               </ProjectWrapper>
             ))}
-          </ProjectGrid>
+          </Masonry>
         </Container>
       </SectionWrapper>
     </Layout>
   )
 }
+
+export default Home

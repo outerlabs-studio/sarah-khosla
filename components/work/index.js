@@ -6,16 +6,6 @@ export const SectionWrapper = styled.section`
   padding-top: 15rem;
   z-index: ${Z.SECTION};
 `
-export const ProjectGrid = styled.div`
-  columns: 3;
-  gap: 1rem;
-
-  :hover {
-    .top {
-      opacity: 0;
-    }
-  }
-`
 export const ProjectWrapper = styled.a`
   position: relative;
   display: block;
@@ -23,9 +13,11 @@ export const ProjectWrapper = styled.a`
   margin-bottom: 2.25rem;
   cursor: pointer;
 
-  :hover {
-    opacity: 0;
-    visibility: hidden;
+  &:hover {
+    .top {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 
   .top {
