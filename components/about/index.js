@@ -23,7 +23,7 @@ export const RightColumn = styled.div`
   padding: 6rem 0 3vh;
 `
 export const ImageWrapper = styled.div`
-  width: 30rem;
+  max-width: 30rem;
 
   img {
     width: 100%;
