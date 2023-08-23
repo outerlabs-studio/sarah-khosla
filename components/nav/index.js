@@ -11,10 +11,12 @@ import { CustomLink } from 'components'
 // import { SplitText } from 'lib'
 import { useIsomorphicLayoutEffect } from 'react-use'
 import gsap from 'gsap'
+import { useRouter } from 'next/router'
 
 const Nav = () => {
   let sectionRef = useRef()
   let navTextRef = useRef([])
+  const router = useRouter()
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -45,23 +47,25 @@ const Nav = () => {
               Sarah Khosla
               <br /> Graphic Design & Art Direction
             </ArticleBase>
-            <DescriptionWrapper>
-              <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
-                  Previously a Sr. Art Director
-                </ArticleBase>
-              </LineWrapper>
-              <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[1] = el)}>
-                  at Stink Studios, currently
-                </ArticleBase>
-              </LineWrapper>
-              <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[2] = el)}>
-                  freelancing.
-                </ArticleBase>
-              </LineWrapper>
-            </DescriptionWrapper>
+            {router.pathname !== '/about' && (
+              <DescriptionWrapper>
+                <LineWrapper>
+                  <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
+                    Previously a Sr. Art Director
+                  </ArticleBase>
+                </LineWrapper>
+                <LineWrapper>
+                  <ArticleBase ref={(el) => (navTextRef.current[1] = el)}>
+                    at Stink Studios, currently
+                  </ArticleBase>
+                </LineWrapper>
+                <LineWrapper>
+                  <ArticleBase ref={(el) => (navTextRef.current[2] = el)}>
+                    freelancing.
+                  </ArticleBase>
+                </LineWrapper>
+              </DescriptionWrapper>
+            )}
           </Column>
           <Column>
             <CustomLink href="/">Selected work</CustomLink>
