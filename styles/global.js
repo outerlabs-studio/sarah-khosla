@@ -43,6 +43,19 @@ const GlobalStyle = createGlobalStyle`
     color: rgb(var(--white));
     font-family: var(--font);
     overscroll-behavior-y: none;
+
+    &.light {
+      background: rgb(var(--white));
+      color: rgb(var(--black));
+
+      header {
+        background: rgb(var(--white)) !important;
+      }
+    }
+
+    header {
+      background: rgb(var(--black));
+    }
   }
 `
 

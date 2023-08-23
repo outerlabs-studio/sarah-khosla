@@ -6,7 +6,6 @@ export const PageHeader = styled.header`
   width: 100%;
   padding: 1rem 0;
   overflow: hidden;
-  background: rgb(var(--black));
   z-index: ${Z.PAGE_HEADER};
 `
 export const NavWrapper = styled.nav`
@@ -21,7 +20,7 @@ export const Column = styled.div`
   justify-content: space-between;
 
   a:hover {
-    color: rgba(var(--white), 0.8);
+    opacity: 0.8;
   }
 `
 export const DescriptionWrapper = styled.div`

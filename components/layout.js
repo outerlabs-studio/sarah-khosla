@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { Nav, Footer } from 'components'
 
 export default function Layout({ children }) {
   const lenis = useLenis()
+  const localRouter = useRouter()
 
   useEffect(() => {
     function onHashChangeStart(url) {
@@ -18,6 +19,16 @@ export default function Layout({ children }) {
       Router.events.off('hashChangeStart', onHashChangeStart)
     }
   }, [lenis])
+
+  useEffect(() => {
+    if (
+      localRouter.pathname === '/' ||
+      localRouter.pathname === '/about' ||
+      localRouter.pathname === '/playground'
+    ) {
+      document.body.classList.remove('light')
+    }
+  }, [localRouter.pathname])
 
   return (
     <>

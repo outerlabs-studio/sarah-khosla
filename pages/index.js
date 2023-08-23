@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { Layout } from 'components'
-import { Container } from 'styles'
+import { Container, ArticleBase, TitleHeader } from 'styles'
 import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
-import { ArticleBase, TitleHeader } from 'styles/text'
 import Masonry from 'react-responsive-masonry'
 
 const items = [
