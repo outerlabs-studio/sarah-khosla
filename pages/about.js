@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { CustomLink, Layout } from 'components'
 import {
   AboutPageWrapper,
@@ -10,96 +11,100 @@ import {
   RightColumn,
 } from 'components/about'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { ArticleBase, Container } from 'styles'
+import { blurHashToDataURL } from 'lib'
 
-function About() {
+function AboutItem({ item }) {
+  if (item.__component === 'about.default') {
+    return (
+      <ListWrapper>
+        <ListTitle>{item.title}</ListTitle>
+        <ArticleBase
+          dangerouslySetInnerHTML={{
+            __html: item.text.replace(/\n/g, '<br/>'),
+          }}
+        />
+      </ListWrapper>
+    )
+  }
+
+  if (item.__component === 'about.links') {
+    return (
+      <ListWrapper>
+        <ListTitle>{item.title}</ListTitle>
+        {item.link.map((link, index) => (
+          <CustomLink key={index} underline href={link.url} target="_blank">
+            {link.text}
+          </CustomLink>
+        ))}
+      </ListWrapper>
+    )
+  }
+
+  if (item.__component === 'about.list') {
+    return (
+      <ListWrapper>
+        <ListTitle>{item.title}</ListTitle>
+        {item.list_item.map((item, index) => (
+          <ArticleBase m={index !== 0 && '0.45rem 0 0 0'} key={index}>
+            {item.text}
+          </ArticleBase>
+        ))}
+      </ListWrapper>
+    )
+  }
+
+  return null // Handle other cases if needed
+}
+
+function About({ data }) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const doc = data.data.attributes
+
   return (
     <AboutPageWrapper>
       <Layout>
         <Container>
           <ContentWrapper>
             <DescriptionWrapper>
-              <ArticleBase>
-                Sarah Khosla is an independent graphic designer and art director
-                located in Los Angeles. She has a strong focus in branding,
-                typography, and interaction design. She is currently
-                freelancing, and working on a women’s based surf film. Formerly
-                a Senior Art Director at Stink Studios.
-              </ArticleBase>
+              <ReactMarkdown
+                components={{
+                  p: ({ node, ...props }) => <ArticleBase nm {...props} />,
+                }}
+              >
+                {doc.description}
+              </ReactMarkdown>
               <ListRow>
-                <ListWrapper>
-                  <ListTitle>Contact</ListTitle>
-                  <ArticleBase>
-                    Los Angeles, California
-                    <br /> (408) 416 1750 <br />
-                    hello@sarahkhosla.com
-                  </ArticleBase>
-                </ListWrapper>
-                <ListWrapper>
-                  <ListTitle>Follow</ListTitle>
-                  <CustomLink underline>WNW</CustomLink>
-                  <CustomLink underline>LinkedIn</CustomLink>
-                  <CustomLink underline>Instagram</CustomLink>
-                </ListWrapper>
+                {doc.top_row.map((item, index) => (
+                  <AboutItem key={index} item={item} />
+                ))}
               </ListRow>
               <ListRow>
-                <ListWrapper>
-                  <ListTitle>Creative Services</ListTitle>
-                  <ArticleBase>Brand Identity</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Typography</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>
-                    Campaign Art Direction
-                  </ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>
-                    Editorial Design
-                  </ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Print Design</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Digital Design</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Package Design</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>UI/UX Design</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Prototyping</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>
-                    3D Motion Graphics
-                  </ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>
-                    Film/Digital Photography
-                  </ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Video Editing</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Animation</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Casting</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Consulting</ArticleBase>
-                </ListWrapper>
-                <ListWrapper>
-                  <ListTitle>Selected Clients</ListTitle>
-                  <ArticleBase>Emmy's Cookies</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Google</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Harley Davidson</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>HBO Max</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Iggy Rosales</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>KitKat</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Keap</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>
-                    Bonterra Organic Vineyeards
-                  </ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Clarti</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>MetaMask</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Pure Cosmetics</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Robinhood</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Sentient Jet</ArticleBase>
-                  <ArticleBase m={'0.45rem 0 0 0'}>Tesorio</ArticleBase>
-                </ListWrapper>
+                {doc.bottom_row.map((item, index) => (
+                  <AboutItem key={index} item={item} />
+                ))}
               </ListRow>
             </DescriptionWrapper>
             <RightColumn>
               <ImageWrapper>
                 <Image
-                  src="/images/sarah.jpg"
-                  alt="Sarah Khosla"
+                  src={
+                    process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                    doc.image.data.attributes.url
+                  }
+                  alt={doc.image.data.attributes.alternativeText}
                   quality={90}
                   width={0}
                   height={0}
+                  onLoad={() => setImageLoaded(true)}
                   sizes="100vw"
                   className="top"
+                  placeholder="blur"
+                  blurDataURL={blurHashToDataURL(
+                    doc.image.data.attributes.blurhash,
+                  )}
                 />
               </ImageWrapper>
             </RightColumn>
@@ -111,3 +116,54 @@ function About() {
 }
 
 export default About
+
+export async function getStaticProps() {
+  // https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
+  // {
+  //   populate: {
+  //     'top_row': {
+  //       populate: '*',
+  //       on: {
+  //         'about.default': {
+  //           populate: '*'
+  //         },
+  //         'about.links': {
+  //           populate: '*'
+  //         },
+  //         'about.list': {
+  //           populate: '*'
+  //         }
+  //       }
+  //     },
+  //     'bottom_row': {
+  //       populate: '*',
+  //       on: {
+  //         'about.default': {
+  //           populate: '*'
+  //         },
+  //         'about.links': {
+  //           populate: '*'
+  //         },
+  //         'about.list': {
+  //           populate: '*'
+  //         }
+  //       }
+  //     },
+  //     'image': {
+  //       populate: '*'
+  //     }
+  //   }
+  // }
+  const res = await axios.get(
+    process.env.NEXT_PUBLIC_STRAPI_API_URL +
+      '/api/about?populate[top_row][populate]=*&populate[top_row][on][about.default][populate]=*&populate[top_row][on][about.links][populate]=*&populate[top_row][on][about.list][populate]=*&populate[bottom_row][populate]=*&populate[bottom_row][on][about.default][populate]=*&populate[bottom_row][on][about.links][populate]=*&populate[bottom_row][on][about.list][populate]=*&populate[image][populate]=*',
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      },
+    },
+  )
+  const data = res.data
+
+  return { props: { data } }
+}

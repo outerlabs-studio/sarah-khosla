@@ -41,8 +41,13 @@ const CustomLink = (props) => {
 
   if (href) {
     return (
-      <Link href={href} target={target} passHref legacyBehavior>
-        <StyledLink color={color} underline={underline}>
+      <Link href={href} passHref legacyBehavior>
+        <StyledLink
+          color={color}
+          underline={underline}
+          target={target}
+          rel={rel}
+        >
           {children}
         </StyledLink>
       </Link>

@@ -43,6 +43,7 @@ export const ListWrapper = styled.div`
   a {
     font-size: 13px !important;
     line-height: 14.5px !important;
+    width: fit-content;
   }
 `
 export const ListTitle = styled(ArticleBase)`

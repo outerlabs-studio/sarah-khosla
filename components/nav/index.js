@@ -47,7 +47,7 @@ const Nav = () => {
               Sarah Khosla
               <br /> Graphic Design & Art Direction
             </ArticleBase>
-            {router.pathname !== '/about' && (
+            {router.pathname === '/' && (
               <DescriptionWrapper>
                 <LineWrapper>
                   <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
