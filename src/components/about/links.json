@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_about_links",
+  "info": {
+    "displayName": "links",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.link",
+      "required": true,
+      "min": 1
+    }
+  }
+}

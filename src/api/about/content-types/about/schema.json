@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "about",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "top_row": {
+      "type": "dynamiczone",
+      "components": [
+        "about.default",
+        "about.list",
+        "about.links"
+      ],
+      "max": 2
+    },
+    "bottom_row": {
+      "type": "dynamiczone",
+      "components": [
+        "about.default",
+        "about.list",
+        "about.links"
+      ],
+      "max": 2
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_about_defaults",
+  "info": {
+    "displayName": "default",
+    "icon": "filter"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

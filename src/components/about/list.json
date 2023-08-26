@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_about_lists",
+  "info": {
+    "displayName": "list",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "list_item": {
+      "displayName": "list_item",
+      "type": "component",
+      "repeatable": true,
+      "component": "about.list-item"
+    }
+  }
+}

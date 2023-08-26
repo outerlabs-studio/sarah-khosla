@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_project_covers",
+  "info": {
+    "displayName": "cover",
+    "icon": "expand"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

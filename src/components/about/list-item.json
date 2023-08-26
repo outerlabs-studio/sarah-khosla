@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_about_list_items",
+  "info": {
+    "displayName": "list_item",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

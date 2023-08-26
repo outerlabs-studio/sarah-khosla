@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_project_displays",
+  "info": {
+    "displayName": "display",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "gif": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_project_splits",
+  "info": {
+    "displayName": "split",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "content_left": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "content_right": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
