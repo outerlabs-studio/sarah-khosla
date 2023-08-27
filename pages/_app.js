@@ -5,7 +5,7 @@ import { useLenis } from '@studio-freight/react-lenis'
 import Tempus from '@studio-freight/tempus'
 import { GlobalStyle } from 'styles'
 import { RealViewport } from 'lib'
-
+//
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
   // ScrollTrigger.defaults({ markers: process.env.NODE_ENV === 'development' })
