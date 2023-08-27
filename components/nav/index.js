@@ -39,7 +39,10 @@ const Nav = () => {
   }, [])
 
   return (
-    <PageHeader ref={(el) => (sectionRef = el)}>
+    <PageHeader
+      ref={(el) => (sectionRef = el)}
+      notfixed={router.pathname === '/about'}
+    >
       <Container>
         <NavWrapper>
           <Column>

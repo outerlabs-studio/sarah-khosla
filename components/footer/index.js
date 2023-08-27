@@ -16,7 +16,7 @@ const Footer = () => {
   const router = useRouter()
 
   return (
-    <PageFooter noPadding={router.pathname === '/about'}>
+    <PageFooter nopadding={router.pathname === '/about'}>
       <Container>
         <ContentWrapper>
           <Column>

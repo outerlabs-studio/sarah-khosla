@@ -3,9 +3,10 @@ import { ArticleBase } from 'styles'
 
 export const AboutPageWrapper = styled.main`
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
 `
 export const ContentWrapper = styled.div`
   display: flex;
@@ -13,14 +14,12 @@ export const ContentWrapper = styled.div`
 `
 export const DescriptionWrapper = styled.div`
   max-width: 29rem;
-  padding: 6rem 0 3vh;
 `
 export const RightColumn = styled.div`
   display: flex;
   width: 100%;
   max-width: 48vw;
   justify-content: flex-end;
-  padding: 6rem 0 3vh;
 `
 export const ImageWrapper = styled.div`
   max-width: 30rem;

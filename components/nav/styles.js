@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 import { Z } from 'styles'
 
 export const PageHeader = styled.header`
-  position: fixed;
+  position: ${(props) => (props.notfixed ? 'relative' : 'fixed')};
   width: 100%;
   padding: 1rem 0;
   overflow: hidden;

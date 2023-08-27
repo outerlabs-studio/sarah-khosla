@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 export const PageFooter = styled.footer`
   position: relative;
   width: 100%;
-  padding: ${(props) => (props.noPadding ? '0 0 2rem' : '15rem 0 2rem')};
+  padding: ${(props) => (props.nopadding ? '0 0 2rem' : '15rem 0 2rem')};
 `
 export const ContentWrapper = styled.div`
   position: relative;
