@@ -12,16 +12,11 @@ const GlobalStyle = createGlobalStyle`
   ${SmoothScroll}
 
   :root {
-    --black: 0, 0, 1;
-    --white: 255, 255, 255;
     --font: ${haffer.style.fontFamily};
   }
   html {
     box-sizing: border-box;
     width: 100%;
-  }
-  ::selection {
-    background: rgba(var(--white), 0.3);
   }
   /* * {
     border: 1px solid #f00 !important;
@@ -39,23 +34,10 @@ const GlobalStyle = createGlobalStyle`
     font-variant-ligatures: common-ligatures;
     text-rendering: optimizelegibility;
     overflow-x: hidden;
-    background: rgb(var(--black));
-    color: rgb(var(--white));
+    background: ${({ theme }) => `rgb(${theme.body})`};
+    color: ${({ theme }) => `rgb(${theme.text})`};
     font-family: var(--font);
     overscroll-behavior-y: none;
-
-    &.light {
-      background: rgb(var(--white));
-      color: rgb(var(--black));
-
-      header {
-        background: rgb(var(--white)) !important;
-      }
-    }
-
-    header {
-      background: rgb(var(--black));
-    }
   }
 `
 

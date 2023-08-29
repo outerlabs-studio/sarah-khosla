@@ -3,9 +3,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useLenis } from '@studio-freight/react-lenis'
 import Tempus from '@studio-freight/tempus'
-import { GlobalStyle } from 'styles'
+import { GlobalStyle, darkTheme, lightTheme } from 'styles'
 import { RealViewport } from 'lib'
-//
+import { ThemeProvider } from 'styled-components'
+
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
   // ScrollTrigger.defaults({ markers: process.env.NODE_ENV === 'development' })
@@ -28,8 +29,6 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-
       {/* Google Tag Manager - Global base code */}
       {/* {process.env.NODE_ENV !== 'development' && (
         <>

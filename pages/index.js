@@ -53,7 +53,7 @@ function Home() {
           <TitleHeader>Work:</TitleHeader>
           <Masonry columnsCount={3} gutter="1rem">
             {items.map((item, i) => (
-              <ProjectWrapper key={i}>
+              <ProjectWrapper key={i} href="/quativa">
                 <Image
                   src={item.image}
                   alt={item.title}

@@ -12,7 +12,7 @@ const StyledLink = styled.a`
   font-weight: 400;
   line-height: 130%;
   text-decoration: ${(props) => (props.underline ? 'underline' : 'none')};
-  color: ${(props) => props.color || 'var(--white)'};
+  color: ${(props) => props.color || `rgb(${props.theme.text})`};
   /* transition: opacity 0.2s ease-in-out; */
   cursor: pointer;
 `

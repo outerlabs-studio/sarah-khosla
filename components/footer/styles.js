@@ -34,7 +34,7 @@ export const LinkWrapper = styled.div`
       content: '';
       height: 10px;
       width: 10px;
-      background-color: rgb(var(--white));
+      background-color: rgb(${(props) => props.theme.text});
       border-radius: 50%;
       display: inline-block;
     }

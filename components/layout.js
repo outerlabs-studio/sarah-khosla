@@ -2,8 +2,10 @@ import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import Router, { useRouter } from 'next/router'
 import { Nav, Footer } from 'components'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle, darkTheme, lightTheme } from 'styles'
 
-export default function Layout({ children }) {
+export default function Layout({ children, theme }) {
   const lenis = useLenis()
   const localRouter = useRouter()
 
@@ -20,23 +22,15 @@ export default function Layout({ children }) {
     }
   }, [lenis])
 
-  useEffect(() => {
-    if (
-      localRouter.pathname === '/' ||
-      localRouter.pathname === '/about' ||
-      localRouter.pathname === '/playground'
-    ) {
-      document.body.classList.remove('light')
-    }
-  }, [localRouter.pathname])
-
   return (
-    <>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
+
       <Lenis root>
         <Nav />
         {children}
         <Footer />
       </Lenis>
-    </>
+    </ThemeProvider>
   )
 }

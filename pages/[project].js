@@ -6,43 +6,28 @@ import {
   TitleWrapper,
   DescriptionWrapper,
 } from 'components/project'
-import { useEffect } from 'react'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { ArticleBase, ArticleTitle, Container } from 'styles'
 
-function Quativa({ params, data }) {
-  const isLight = true
-  const doc = data.data.attributes
-
-  console.log(params)
-  console.log(data)
-
-  useEffect(() => {
-    if (isLight) {
-      document.body.classList.add('light')
-    }
-  }, [isLight])
+function Quativa({ params, data, setTheme }) {
+  const doc = data.data[0].attributes
 
   return (
-    <Layout>
+    <Layout theme={doc.light ? 'light' : 'dark'}>
       <ProjectWrapper>
         <Container>
           <Hero>
             <TitleWrapper>
-              <ArticleTitle>Quativa</ArticleTitle>
+              <ArticleTitle>{doc.title}</ArticleTitle>
             </TitleWrapper>
             <DescriptionWrapper>
-              <ArticleBase>
-                Quativa is the all-in-one platform for people who sell and
-                install solar. The solar space is crowded, no matter how you cut
-                it. Whether you’re an installer, salesperson or finance partner.
-                Uniquely, Quativa situates itself among all these audiences,
-                connecting once disparate processes and technologies into one
-                streamlined platform. Their super-powered sales application
-                enables them to provide solar to consumers in over 20 regions.
-                They not only centralize all of your sales tools, but connect
-                you to the right partners for installing and financing a job so
-                that you can focus on what you do best: selling.
-              </ArticleBase>
+              <ReactMarkdown
+                components={{
+                  p: ({ node, ...props }) => <ArticleBase {...props} />,
+                }}
+              >
+                {doc.description}
+              </ReactMarkdown>
             </DescriptionWrapper>
           </Hero>
         </Container>
@@ -98,7 +83,7 @@ export async function getStaticProps({ params }) {
   //   }
   // }
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`,
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
