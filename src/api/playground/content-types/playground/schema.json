@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "playgrounds",
+  "info": {
+    "singularName": "playground",
+    "pluralName": "playgrounds",
+    "displayName": "playground"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}
