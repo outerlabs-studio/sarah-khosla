@@ -83,8 +83,8 @@ export default function CustomHead({
           images: [
             {
               url: image ? image.url : '/og-image.png',
-              width: image.width ? image.width : 1200,
-              height: image.height ? image.height : 630,
+              width: image ? image.width : 1200,
+              height: image ? image.height : 630,
               alt: title,
             },
           ],

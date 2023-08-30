@@ -42,7 +42,12 @@ function Quativa({ params, data, setTheme }) {
   }
 
   return (
-    <Layout theme={doc.light ? 'light' : 'dark'}>
+    <Layout
+      theme={doc.light ? 'light' : 'dark'}
+      seo={{
+        title: doc.title ? `${doc.title} | Sarah Khosla` : params.project,
+      }}
+    >
       <ProjectWrapper>
         <Container>
           <Hero>

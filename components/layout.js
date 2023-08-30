@@ -9,7 +9,7 @@ export default function Layout({
   children,
   theme,
   seo = {
-    title: 'Sarah Khosla',
+    title: 'Sarah Khosla | Independent Designer',
     description: '',
     image: { url: 'https://website.com/og.jpg' },
     keywords: ['sarah', 'khosla'],
