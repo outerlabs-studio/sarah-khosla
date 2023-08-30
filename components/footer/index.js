@@ -40,7 +40,9 @@ const Footer = () => {
             )}
           </Column>
           <Column>
-            {router.pathname === '/' || router.pathname === '/playground' ? (
+            {router.pathname === '/' ||
+            router.pathname === '/playground' ||
+            router.pathname === '/[project]' ? (
               <LinksWrapper>
                 <CustomLink href="/linkedin" target="_blank">
                   Linkedin,

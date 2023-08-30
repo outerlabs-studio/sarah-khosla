@@ -12,6 +12,8 @@ export const ProjectWrapper = styled.a`
   width: 100%;
   margin-bottom: 2.25rem;
   cursor: pointer;
+  color: rgb(${(props) => props.theme.text});
+  text-decoration: none;
 
   &:hover {
     .top {
