@@ -2,26 +2,32 @@
   "collectionName": "components_project_splits",
   "info": {
     "displayName": "split",
-    "icon": "grid"
+    "icon": "grid",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "content_left": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "content_right": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false,
+      ]
+    },
+    "border": {
+      "type": "boolean",
+      "default": false,
       "required": true
     }
   }

@@ -2,17 +2,23 @@
   "collectionName": "components_project_covers",
   "info": {
     "displayName": "cover",
-    "icon": "expand"
+    "icon": "expand",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "content": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false,
+      ]
+    },
+    "border": {
+      "type": "boolean",
+      "default": false,
       "required": true
     }
   }
