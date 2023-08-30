@@ -95,9 +95,12 @@ function About({ data }) {
                   }
                   alt={doc.image.data.attributes.alternativeText}
                   quality={90}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
+                  width={doc.image.data.attributes.width}
+                  height={doc.image.data.attributes.height}
+                  sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
                   className="top"
                   placeholder="blur"
                   blurDataURL={blurHashToDataURL(

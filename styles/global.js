@@ -39,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font);
     overscroll-behavior-y: none;
   }
+
+  @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+    img[loading='lazy'] {
+      clip-path: inset(0.6px);
+    }
+  }
 `
 
 export default GlobalStyle

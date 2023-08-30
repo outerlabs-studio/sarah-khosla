@@ -25,9 +25,12 @@ function Quativa({ params, data, setTheme }) {
         <Image
           src={src}
           alt={data.alternativeText}
-          width={0}
-          height={0}
-          sizes="100vw"
+          width={data.width}
+          height={data.height}
+          sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
           placeholder="blur"
           blurDataURL={blurHashToDataURL(data.blurhash)}
           className={className}
