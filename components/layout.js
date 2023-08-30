@@ -1,11 +1,20 @@
 import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import Router, { useRouter } from 'next/router'
-import { Nav, Footer } from 'components'
+import { Nav, Footer, CustomHead } from 'components'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle, darkTheme, lightTheme } from 'styles'
 
-export default function Layout({ children, theme }) {
+export default function Layout({
+  children,
+  theme,
+  seo = {
+    title: 'Sarah Khosla',
+    description: '',
+    image: { url: 'https://website.com/og.jpg' },
+    keywords: ['sarah', 'khosla'],
+  },
+}) {
   const lenis = useLenis()
   const localRouter = useRouter()
 
@@ -24,6 +33,7 @@ export default function Layout({ children, theme }) {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <CustomHead {...seo} />
       <GlobalStyle />
 
       <Lenis root>
