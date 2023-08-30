@@ -28,16 +28,18 @@ export const ContentViewWrapper = styled.div`
   display: grid;
   grid-template-columns: ${(props) => (props.split ? `repeat(2, 1fr)` : '1fr')};
   gap: 1rem;
+  padding: ${(props) =>
+    props.logos ? '10rem 0' : props.border ? '1.5rem' : 0};
+  justify-items: ${(props) => (props.logos ? 'center' : 'unset')};
   ${(props) =>
     props.border &&
     `
     background-color: rgb(${darkTheme.body});
-    padding: 1.5rem;
     `}
 
   img,
   video {
-    width: 100%;
+    width: ${(props) => (props.logos ? '15rem' : '100%')};
     height: auto;
     flex: 1;
   }

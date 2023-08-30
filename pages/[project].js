@@ -46,9 +46,11 @@ function Quativa({ params, data, setTheme }) {
       <ProjectWrapper>
         <Container>
           <Hero>
-            <TitleWrapper>
-              <ArticleTitle>{doc.title}</ArticleTitle>
-            </TitleWrapper>
+            {params.project !== 'logos' && (
+              <TitleWrapper>
+                <ArticleTitle>{doc.title}</ArticleTitle>
+              </TitleWrapper>
+            )}
             <DescriptionWrapper>
               <ReactMarkdown
                 components={{
@@ -58,12 +60,16 @@ function Quativa({ params, data, setTheme }) {
                 {doc.description}
               </ReactMarkdown>
               <RoleWrapper>
-                <ArticleBase>
-                  <b>Role:</b> {doc.role}
-                </ArticleBase>
-                <ArticleBase>
-                  <b>Studio:</b> {doc.studio}
-                </ArticleBase>
+                {doc.role && (
+                  <ArticleBase>
+                    <b>Role:</b> {doc.role}
+                  </ArticleBase>
+                )}
+                {doc.studio && (
+                  <ArticleBase>
+                    <b>Studio:</b> {doc.studio}
+                  </ArticleBase>
+                )}
               </RoleWrapper>
             </DescriptionWrapper>
           </Hero>
@@ -74,7 +80,11 @@ function Quativa({ params, data, setTheme }) {
               const imgData = item.content.data.attributes
 
               return (
-                <ContentViewWrapper key={index} border={isBorder}>
+                <ContentViewWrapper
+                  key={index}
+                  border={isBorder}
+                  logos={params.project === 'logos'}
+                >
                   {generateMediaJSX(imgData)}
                 </ContentViewWrapper>
               )
@@ -84,7 +94,12 @@ function Quativa({ params, data, setTheme }) {
               const rightData = content_right.data.attributes
 
               return (
-                <ContentViewWrapper key={index} split border={isBorder}>
+                <ContentViewWrapper
+                  key={index}
+                  split
+                  border={isBorder}
+                  logos={params.project === 'logos'}
+                >
                   {generateMediaJSX(leftData)}
                   {generateMediaJSX(rightData, 'right')}
                 </ContentViewWrapper>
