@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 import { ArticleBase } from 'styles'
 
-export const AboutPageWrapper = styled.main`
+export const FullHeightWrapper = styled.main`
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;

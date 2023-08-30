@@ -41,7 +41,7 @@ const Nav = () => {
   return (
     <PageHeader
       ref={(el) => (sectionRef = el)}
-      notfixed={router.pathname === '/about'}
+      notfixed={router.pathname === '/about' || router.pathname === '/404'}
     >
       <Container>
         <NavWrapper>

@@ -6,6 +6,7 @@ export const PageHeader = styled.header`
   width: 100%;
   padding: 1rem 0;
   overflow: hidden;
+  background-color: rgb(${(props) => props.theme.body});
   z-index: ${Z.PAGE_HEADER};
 `
 export const NavWrapper = styled.nav`

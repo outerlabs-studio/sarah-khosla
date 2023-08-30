@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { CustomLink, Layout } from 'components'
 import {
-  AboutPageWrapper,
+  FullHeightWrapper,
   ContentWrapper,
   DescriptionWrapper,
   ImageWrapper,
@@ -11,7 +11,7 @@ import {
   RightColumn,
 } from 'components/about'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ArticleBase, Container } from 'styles'
 import { blurHashToDataURL } from 'lib'
@@ -60,11 +60,10 @@ function AboutItem({ item }) {
 }
 
 function About({ data }) {
-  const [imageLoaded, setImageLoaded] = useState(false)
   const doc = data.data.attributes
 
   return (
-    <AboutPageWrapper>
+    <FullHeightWrapper>
       <Layout>
         <Container>
           <ContentWrapper>
@@ -98,7 +97,6 @@ function About({ data }) {
                   quality={90}
                   width={0}
                   height={0}
-                  onLoad={() => setImageLoaded(true)}
                   sizes="100vw"
                   className="top"
                   placeholder="blur"
@@ -111,7 +109,7 @@ function About({ data }) {
           </ContentWrapper>
         </Container>
       </Layout>
-    </AboutPageWrapper>
+    </FullHeightWrapper>
   )
 }
 

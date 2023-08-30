@@ -16,7 +16,9 @@ const Footer = () => {
   const router = useRouter()
 
   return (
-    <PageFooter nopadding={router.pathname === '/about'}>
+    <PageFooter
+      nopadding={router.pathname === '/about' || router.pathname === '/404'}
+    >
       <Container>
         <ContentWrapper>
           <Column>
@@ -54,7 +56,7 @@ const Footer = () => {
               <div />
             )}
             <LinkWrapper>
-              {router.pathname === '/about' ? (
+              {router.pathname === '/about' || router.pathname === '/404' ? (
                 <CustomLink href="/">Back to homepage</CustomLink>
               ) : (
                 <CustomLink onClick={() => lenis.scrollTo('top')}>
