@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_global_seos",
+  "info": {
+    "displayName": "SEO",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 160
+    },
+    "OG": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "keywords": {
+      "type": "json",
+      "required": true
+    }
+  }
+}
