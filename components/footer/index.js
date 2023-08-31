@@ -11,7 +11,7 @@ import { useLenis } from '@studio-freight/react-lenis'
 import CustomLink from 'components/link'
 import { useRouter } from 'next/router'
 
-const Footer = () => {
+const Footer = ({ email, socials }) => {
   const lenis = useLenis()
   const router = useRouter()
 
@@ -28,10 +28,12 @@ const Footer = () => {
                 <ArticleBase>
                   Los Angeles, California{' '}
                   <CustomLink
-                    href="mailto:hello@sarahkhosla.com"
+                    href={
+                      email ? `mailto:${email}` : 'mailto:hello@sarahkhosla.com'
+                    }
                     target="_blank"
                   >
-                    hello@sarahkhosla.com
+                    {email ? email : 'hello@sarahkhosla.com'}
                   </CustomLink>
                 </ArticleBase>
               </DescriptionWrapper>
@@ -44,15 +46,13 @@ const Footer = () => {
             router.pathname === '/playground' ||
             router.pathname === '/[project]' ? (
               <LinksWrapper>
-                <CustomLink href="/linkedin" target="_blank">
-                  Linkedin,
-                </CustomLink>
-                <CustomLink href="/wnw" target="_blank">
-                  WNW,
-                </CustomLink>
-                <CustomLink href="/instagram" target="_blank">
-                  Instagram
-                </CustomLink>
+                {socials &&
+                  socials.map((item, index, row) => (
+                    <CustomLink href={item.url} target="_blank" key={index}>
+                      {item.text}
+                      {index + 1 === row.length ? null : ','}
+                    </CustomLink>
+                  ))}
               </LinksWrapper>
             ) : (
               <div />

@@ -22,7 +22,7 @@ export const DescriptionWrapper = styled.div`
 `
 export const LinksWrapper = styled.div`
   display: flex;
-  gap: 3px;
+  gap: 5px;
 `
 export const LinkWrapper = styled.div`
   a {
