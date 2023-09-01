@@ -5,70 +5,116 @@ import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry from 'react-responsive-masonry'
 import axios from 'axios'
+import { blurHashToDataURL } from 'lib'
 
-const items = [
-  {
-    title: 'HBO Max, Scene in Black Network',
-    image: '/images/hbo/cover.jpg',
-    gif: '/images/hbo/video.gif',
-    link: '/hbo',
-  },
-  {
-    title: 'Quativa, All-in-one',
-    image: '/images/quativa/cover.jpg',
-    gif: '/images/quativa/video.gif',
-    link: '/quativa',
-  },
-  {
-    title: 'Templum, Next Generation',
-    image: '/images/templum/cover.jpg',
-    gif: '/images/templum/video.gif',
-    link: '/templum',
-  },
-  {
-    title: 'Target, GiftNow',
-    image: '/images/giftnow/cover.jpg',
-    gif: '/images/giftnow/video.gif',
-    link: '/giftnow',
-  },
-  {
-    title: 'Iggy Rosales',
-    image: '/images/iggy/cover.jpg',
-    gif: '/images/iggy/video.gif',
-    link: '/iggy',
-  },
-  {
-    title: 'All Day Kitchens',
-    image: '/images/allday/cover.jpg',
-    gif: '/images/allday/video.gif',
-    link: '/allday',
-  },
-]
+// const items = [
+//   {
+//     title: 'HBO Max, Scene in Black Network',
+//     image: '/images/hbo/cover.jpg',
+//     gif: '/images/hbo/video.gif',
+//     link: '/hbo',
+//   },
+//   {
+//     title: 'Quativa, All-in-one',
+//     image: '/images/quativa/cover.jpg',
+//     gif: '/images/quativa/video.gif',
+//     link: '/quativa',
+//   },
+//   {
+//     title: 'Templum, Next Generation',
+//     image: '/images/templum/cover.jpg',
+//     gif: '/images/templum/video.gif',
+//     link: '/templum',
+//   },
+//   {
+//     title: 'Target, GiftNow',
+//     image: '/images/giftnow/cover.jpg',
+//     gif: '/images/giftnow/video.gif',
+//     link: '/giftnow',
+//   },
+//   {
+//     title: 'Iggy Rosales',
+//     image: '/images/iggy/cover.jpg',
+//     gif: '/images/iggy/video.gif',
+//     link: '/iggy',
+//   },
+//   {
+//     title: 'All Day Kitchens',
+//     image: '/images/allday/cover.jpg',
+//     gif: '/images/allday/video.gif',
+//     link: '/allday',
+//   },
+// ]
 
-// to-do: add blur-hash to images
-function Home({ data }) {
-  const doc = data.data.attributes
+function Home({ data, seo }) {
+  const seoDoc = seo.data.attributes
+  const projectsDoc = data.data
 
   return (
     <Layout
       seo={{
-        title: doc.SEO.title,
-        description: doc.SEO.description,
+        title: seoDoc.SEO.title,
+        description: seoDoc.SEO.description,
         image: {
           url:
             process.env.NEXT_PUBLIC_STRAPI_API_URL +
-            doc.SEO.OG.data.attributes.url,
+            seoDoc.SEO.OG.data.attributes.url,
         },
-        keywords: doc.SEO.keywords.data,
+        keywords: seoDoc.SEO.keywords.data,
       }}
-      contact={doc.contact}
-      socials={doc.socials}
+      contact={seoDoc.contact}
+      socials={seoDoc.socials}
     >
       <SectionWrapper>
         <Container>
           <TitleHeader>Work:</TitleHeader>
           <Masonry columnsCount={3} gutter="1rem">
-            {items.map((item, i) => (
+            {projectsDoc.map((item, i) => {
+              const itemDoc = item.attributes
+
+              return (
+                <ProjectWrapper key={i} href={`/${itemDoc.slug}`}>
+                  <Image
+                    src={
+                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                      itemDoc.display.image.data.attributes.url
+                    }
+                    alt={itemDoc.display.image.data.attributes.alternativeText}
+                    width={itemDoc.display.image.data.attributes.width}
+                    height={itemDoc.display.image.data.attributes.height}
+                    sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
+                    placeholder="blur"
+                    blurDataURL={blurHashToDataURL(
+                      itemDoc.display.image.data.attributes.blurhash,
+                    )}
+                    className="top"
+                  />
+                  <Image
+                    src={
+                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                      itemDoc.display.gif.data.attributes.url
+                    }
+                    alt={itemDoc.display.gif.data.attributes.alternativeText}
+                    width={itemDoc.display.gif.data.attributes.width}
+                    height={itemDoc.display.gif.data.attributes.height}
+                    sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
+                    placeholder="blur"
+                    blurDataURL={blurHashToDataURL(
+                      itemDoc.display.gif.data.attributes.blurhash,
+                    )}
+                    className="bottom"
+                  />
+                  <ArticleBase>{itemDoc.title}</ArticleBase>
+                </ProjectWrapper>
+              )
+            })}
+            {/* {items.map((item, i) => (
               <ProjectWrapper key={i} href="/quativa">
                 <Image
                   src={item.image}
@@ -90,7 +136,7 @@ function Home({ data }) {
                 />
                 <ArticleBase>{item.title}</ArticleBase>
               </ProjectWrapper>
-            ))}
+            ))} */}
           </Masonry>
         </Container>
       </SectionWrapper>
@@ -115,16 +161,17 @@ export async function getStaticProps() {
   //     }
   //    }
   // }
-  const res = await axios.get(
-    process.env.NEXT_PUBLIC_STRAPI_API_URL +
-      '/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    },
-  )
-  const data = res.data
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?sort[0]=id&fields[0]=slug&fields[1]=title&populate[display][populate]=*`
+  const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
+  const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  }
 
-  return { props: { data } }
+  const dataRes = await axios.get(dataURL, { headers })
+  const seoRes = await axios.get(seoURL, { headers })
+
+  const data = dataRes.data
+  const seo = seoRes.data
+
+  return { props: { data, seo } }
 }
