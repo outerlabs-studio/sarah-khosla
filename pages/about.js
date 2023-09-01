@@ -108,7 +108,6 @@ function About({ data, seo }) {
                     doc.image.data.attributes.url
                   }
                   alt={doc.image.data.attributes.alternativeText}
-                  quality={90}
                   width={doc.image.data.attributes.width}
                   height={doc.image.data.attributes.height}
                   sizes="(max-width: 640px) 100vw,

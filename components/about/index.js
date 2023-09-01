@@ -9,8 +9,9 @@ export const FullHeightWrapper = styled.main`
   gap: 1rem;
 `
 export const ContentWrapper = styled.div`
-  display: flex;
-  gap: 5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4rem;
 `
 export const DescriptionWrapper = styled.div`
   max-width: 29rem;
@@ -22,7 +23,8 @@ export const RightColumn = styled.div`
   justify-content: flex-end;
 `
 export const ImageWrapper = styled.div`
-  max-width: 30rem;
+  max-width: 28rem;
+  width: 100%;
 
   img {
     width: 100%;
