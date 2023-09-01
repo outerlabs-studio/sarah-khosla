@@ -4,6 +4,7 @@ import { Container, ArticleBase, TitleHeader } from 'styles'
 import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry from 'react-responsive-masonry'
+import axios from 'axios'
 
 const items = [
   {
@@ -45,9 +46,24 @@ const items = [
 ]
 
 // to-do: add blur-hash to images
-function Home() {
+function Home({ data }) {
+  const doc = data.data.attributes
+
   return (
-    <Layout>
+    <Layout
+      seo={{
+        title: doc.SEO.title,
+        description: doc.SEO.description,
+        image: {
+          url:
+            process.env.NEXT_PUBLIC_STRAPI_API_URL +
+            doc.SEO.OG.data.attributes.url,
+        },
+        keywords: doc.SEO.keywords.data,
+      }}
+      contact={doc.contact}
+      socials={doc.socials}
+    >
       <SectionWrapper>
         <Container>
           <TitleHeader>Work:</TitleHeader>
@@ -83,3 +99,32 @@ function Home() {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  // https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
+  // {
+  //   fields: [
+  //     'contact',
+  //   ],
+  //   populate: {
+  //     'SEO': {
+  //       populate: '*'
+  //     },
+  //     'socials': {
+  //       populate: '*'
+  //     }
+  //    }
+  // }
+  const res = await axios.get(
+    process.env.NEXT_PUBLIC_STRAPI_API_URL +
+      '/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*',
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      },
+    },
+  )
+  const data = res.data
+
+  return { props: { data } }
+}

@@ -10,8 +10,10 @@ import Masonry from 'react-responsive-masonry'
 import { useIsomorphicLayoutEffect, useRaf } from 'react-use'
 import { Container } from 'styles'
 
-function Playground({ data }) {
+function Playground({ data, seo }) {
   const doc = data.data.attributes
+  const seoDoc = seo.data.attributes
+
   let imageRef = useRef([])
 
   useIsomorphicLayoutEffect(() => {
@@ -40,7 +42,20 @@ function Playground({ data }) {
   }, [])
 
   return (
-    <Layout>
+    <Layout
+      seo={{
+        title: `Playground | ${seoDoc.SEO.title}`,
+        description: seoDoc.SEO.description,
+        image: {
+          url:
+            process.env.NEXT_PUBLIC_STRAPI_API_URL +
+            seoDoc.SEO.OG.data.attributes.url,
+        },
+        keywords: seoDoc.SEO.keywords.data,
+      }}
+      contact={seoDoc.contact}
+      socials={seoDoc.socials}
+    >
       <PlaygroundWrapper>
         <Container>
           <Masonry columnsCount={5} gutter="1rem">
@@ -72,15 +87,17 @@ function Playground({ data }) {
 export default Playground
 
 export async function getStaticProps() {
-  const res = await axios.get(
-    process.env.NEXT_PUBLIC_STRAPI_API_URL + '/api/playground?populate=*',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    },
-  )
-  const data = res.data
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/playground?populate=*`
+  const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
+  const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  }
 
-  return { props: { data } }
+  const dataRes = await axios.get(dataURL, { headers })
+  const seoRes = await axios.get(seoURL, { headers })
+
+  const data = dataRes.data
+  const seo = seoRes.data
+
+  return { props: { data, seo } }
 }

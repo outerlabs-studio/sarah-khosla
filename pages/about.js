@@ -59,12 +59,26 @@ function AboutItem({ item }) {
   return null // Handle other cases if needed
 }
 
-function About({ data }) {
+function About({ data, seo }) {
   const doc = data.data.attributes
+  const seoDoc = seo.data.attributes
 
   return (
     <FullHeightWrapper>
-      <Layout>
+      <Layout
+        seo={{
+          title: `About | ${seoDoc.SEO.title}`,
+          description: seoDoc.SEO.description,
+          image: {
+            url:
+              process.env.NEXT_PUBLIC_STRAPI_API_URL +
+              seoDoc.SEO.OG.data.attributes.url,
+          },
+          keywords: seoDoc.SEO.keywords.data,
+        }}
+        contact={seoDoc.contact}
+        socials={seoDoc.socials}
+      >
         <Container>
           <ContentWrapper>
             <DescriptionWrapper>
@@ -155,16 +169,17 @@ export async function getStaticProps() {
   //     }
   //   }
   // }
-  const res = await axios.get(
-    process.env.NEXT_PUBLIC_STRAPI_API_URL +
-      '/api/about?populate[top_row][populate]=*&populate[top_row][on][about.default][populate]=*&populate[top_row][on][about.links][populate]=*&populate[top_row][on][about.list][populate]=*&populate[bottom_row][populate]=*&populate[bottom_row][on][about.default][populate]=*&populate[bottom_row][on][about.links][populate]=*&populate[bottom_row][on][about.list][populate]=*&populate[image][populate]=*',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    },
-  )
-  const data = res.data
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/about?populate[top_row][populate]=*&populate[top_row][on][about.default][populate]=*&populate[top_row][on][about.links][populate]=*&populate[top_row][on][about.list][populate]=*&populate[bottom_row][populate]=*&populate[bottom_row][on][about.default][populate]=*&populate[bottom_row][on][about.links][populate]=*&populate[bottom_row][on][about.list][populate]=*&populate[image][populate]=*`
+  const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
+  const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  }
 
-  return { props: { data } }
+  const dataRes = await axios.get(dataURL, { headers })
+  const seoRes = await axios.get(seoURL, { headers })
+
+  const data = dataRes.data
+  const seo = seoRes.data
+
+  return { props: { data, seo } }
 }

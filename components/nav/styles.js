@@ -12,13 +12,13 @@ export const PageHeader = styled.header`
 export const NavWrapper = styled.nav`
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 4fr 3fr;
   grid-gap: 15rem;
-  align-items: center;
 `
 export const Column = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   a:hover {
     opacity: 0.8;
@@ -26,8 +26,6 @@ export const Column = styled.div`
 `
 export const DescriptionWrapper = styled.div`
   max-width: 10rem;
-  position: absolute;
-  left: 28%;
 `
 export const LineWrapper = styled.div`
   overflow: hidden;

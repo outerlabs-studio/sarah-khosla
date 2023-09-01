@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { Layout } from 'components'
 import { FullHeightWrapper } from 'components/about'
 import { styled } from 'styled-components'
@@ -9,10 +10,16 @@ const SectionWrapper = styled.div`
   justify-content: center;
 `
 
-function PageNotFound() {
+function PageNotFound({ seo }) {
+  const seoDoc = seo.data.attributes
+
   return (
     <FullHeightWrapper>
-      <Layout>
+      <Layout
+        seo={{ title: `Page not found | ${seoDoc.SEO.title}` }}
+        contact={seoDoc.contact}
+        socials={seoDoc.socials}
+      >
         <SectionWrapper>
           <Container>
             <TitleHeader>404</TitleHeader>
@@ -28,3 +35,15 @@ function PageNotFound() {
 }
 
 export default PageNotFound
+
+export async function getStaticProps({ params }) {
+  const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
+  const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  }
+
+  const seoRes = await axios.get(seoURL, { headers })
+  const seo = seoRes.data
+
+  return { props: { seo } }
+}

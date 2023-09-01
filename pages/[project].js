@@ -13,8 +13,9 @@ import Image from 'next/image'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { ArticleBase, ArticleTitle, Container } from 'styles'
 
-function Quativa({ params, data, setTheme }) {
+function Quativa({ params, data, setTheme, seo }) {
   const doc = data.data[0].attributes
+  const seoDoc = seo.data.attributes
 
   const generateMediaJSX = (data, className = '') => {
     const isImage = data.mime.startsWith('image/')
@@ -45,8 +46,19 @@ function Quativa({ params, data, setTheme }) {
     <Layout
       theme={doc.light ? 'light' : 'dark'}
       seo={{
-        title: doc.title ? `${doc.title} | Sarah Khosla` : params.project,
+        title: doc.title
+          ? `${doc.title} | ${seoDoc.SEO.title}`
+          : params.project,
+        description: seoDoc.SEO.description,
+        image: {
+          url:
+            process.env.NEXT_PUBLIC_STRAPI_API_URL +
+            seoDoc.SEO.OG.data.attributes.url,
+        },
+        keywords: seoDoc.SEO.keywords.data,
       }}
+      contact={seoDoc.contact}
+      socials={seoDoc.socials}
     >
       <ProjectWrapper>
         <Container>
@@ -165,15 +177,17 @@ export async function getStaticProps({ params }) {
   //     }
   //   }
   // }
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    },
-  )
-  const data = res.data
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`
+  const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
+  const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  }
 
-  return { props: { params, data } }
+  const dataRes = await axios.get(dataURL, { headers })
+  const seoRes = await axios.get(seoURL, { headers })
+
+  const data = dataRes.data
+  const seo = seoRes.data
+
+  return { props: { params, data, seo } }
 }

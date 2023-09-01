@@ -22,7 +22,7 @@ const Nav = () => {
     let ctx = gsap.context(() => {
       let tl = gsap.timeline({
         scrollTrigger: {
-          start: '10px top',
+          start: '20px top',
           toggleActions: 'play none none reverse',
         },
       })

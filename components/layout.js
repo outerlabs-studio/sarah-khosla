@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Lenis, useLenis } from '@studio-freight/react-lenis'
 import Router, { useRouter } from 'next/router'
 import { Nav, Footer, CustomHead } from 'components'
@@ -15,10 +15,11 @@ export default function Layout({
     image: { url: 'https://website.com/og.jpg' },
     keywords: ['sarah', 'khosla'],
   },
+  contact,
+  socials,
 }) {
   const lenis = useLenis()
   const localRouter = useRouter()
-  const [data, setData] = useState(null)
 
   useEffect(() => {
     function onHashChangeStart(url) {
@@ -33,36 +34,6 @@ export default function Layout({
     }
   }, [lenis])
 
-  useEffect(() => {
-    // https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
-    // {
-    //   fields: [
-    //     'contact',
-    //   ],
-    //   populate: {
-    //     'SEO': {
-    //       populate: '*'
-    //     },
-    //     'socials': {
-    //       populate: '*'
-    //     }
-    //    }
-    // }
-    const res = axios
-      .get(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-          },
-        },
-      )
-      .then((res) => setData(res.data.data.attributes))
-    setData(data)
-  }, [])
-
-  console.log(data)
-
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <CustomHead {...seo} />
@@ -71,7 +42,7 @@ export default function Layout({
       <Lenis root>
         <Nav />
         {children}
-        <Footer email={data && data.contact} socials={data && data.socials} />
+        <Footer email={contact} socials={socials} />
       </Lenis>
     </ThemeProvider>
   )
