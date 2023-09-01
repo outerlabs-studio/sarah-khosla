@@ -26,6 +26,7 @@ export const Column = styled.div`
 `
 export const DescriptionWrapper = styled.div`
   max-width: 10rem;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
 `
 export const LineWrapper = styled.div`
   overflow: hidden;

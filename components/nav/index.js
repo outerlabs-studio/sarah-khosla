@@ -50,25 +50,24 @@ const Nav = () => {
               Sarah Khosla
               <br /> Graphic Design & Art Direction
             </ArticleBase>
-            {router.pathname === '/' && (
-              <DescriptionWrapper>
-                <LineWrapper>
-                  <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
-                    Previously a Sr. Art Director
-                  </ArticleBase>
-                </LineWrapper>
-                <LineWrapper>
-                  <ArticleBase ref={(el) => (navTextRef.current[1] = el)}>
-                    at Stink Studios, currently
-                  </ArticleBase>
-                </LineWrapper>
-                <LineWrapper>
-                  <ArticleBase ref={(el) => (navTextRef.current[2] = el)}>
-                    freelancing.
-                  </ArticleBase>
-                </LineWrapper>
-              </DescriptionWrapper>
-            )}
+
+            <DescriptionWrapper visible={router.pathname === '/'}>
+              <LineWrapper>
+                <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
+                  Previously a Sr. Art Director
+                </ArticleBase>
+              </LineWrapper>
+              <LineWrapper>
+                <ArticleBase ref={(el) => (navTextRef.current[1] = el)}>
+                  at Stink Studios, currently
+                </ArticleBase>
+              </LineWrapper>
+              <LineWrapper>
+                <ArticleBase ref={(el) => (navTextRef.current[2] = el)}>
+                  freelancing.
+                </ArticleBase>
+              </LineWrapper>
+            </DescriptionWrapper>
           </Column>
           <Column>
             <CustomLink href="/">Selected work</CustomLink>
