@@ -12,10 +12,14 @@ export const PageHeader = styled.header`
 export const NavWrapper = styled.nav`
   position: relative;
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1rem;
 
-  ${media.tablet`grid-template-columns: repeat(4, 1fr);`};
+  ${media.tablet`
+    display: flex;
+    justify-content: space-between;
+  `};
 
   /* ${media.desktop`grid-gap: 8rem;`};
   ${media.tablet`
@@ -31,8 +35,6 @@ export const Logo = styled(Link)`
   z-index: ${Z.PAGE_HEADER};
   color: rgb(${(props) => props.theme.text});
   text-decoration: none;
-
-  ${media.thone`grid-column: 1 / span 3;`};
 `
 export const Column = styled.div`
   display: contents;
@@ -43,7 +45,6 @@ export const Column = styled.div`
     justify-content: flex-end;
     align-items: normal;
   `};
-  ${media.thone`grid-column: -1 / -1;`}
 
   &.nav {
     a {
@@ -77,12 +78,8 @@ export const LinkWrapper = styled.div`
 `
 export const DescriptionWrapper = styled.div`
   width: 11rem;
-  display: ${(props) => (props.visible ? 'static' : 'none')};
+  opacity: ${(props) => (props.visible ? '1' : '0')};
 
-  ${media.tablet`
-    padding-left: 3rem;
-    width: 15rem;
-  `};
   ${media.phone`display: none;`};
 `
 export const LineWrapper = styled.div`
