@@ -55,6 +55,7 @@ export const Column = styled.div`
 export const LinkWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
   a {
     width: fit-content;
