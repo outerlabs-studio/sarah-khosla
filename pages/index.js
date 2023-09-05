@@ -69,7 +69,7 @@ function Home({ data, seo }) {
         <Container>
           <TitleHeader>Work:</TitleHeader>
           <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 440: 2, 820: 3 }}
+            columnsCountBreakPoints={{ 330: 1, 440: 2, 820: 3 }}
           >
             <Masonry gutter="1rem">
               {projectsDoc.map((item, i) => {

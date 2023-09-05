@@ -2,7 +2,8 @@ import { styled } from 'styled-components'
 
 export const PlaygroundWrapper = styled.section`
   position: relative;
-  padding-top: 6rem;
+  padding-top: 10rem;
+  opacity: 0;
 `
 export const ImageWrapper = styled.div`
   width: 100%;

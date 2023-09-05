@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useLenis } from '@studio-freight/react-lenis'
 import axios from 'axios'
 import { Layout } from 'components'
 import { ImageWrapper } from 'components/about'
@@ -6,19 +6,23 @@ import { PlaygroundWrapper } from 'components/playground'
 import gsap from 'gsap'
 import { blurHashToDataURL } from 'lib'
 import Image from 'next/image'
+import { useRef } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import { useIsomorphicLayoutEffect, useRaf } from 'react-use'
+import { useIsomorphicLayoutEffect } from 'react-use'
 import { Container } from 'styles'
 
 function Playground({ data, seo }) {
   const doc = data.data.attributes
   const seoDoc = seo.data.attributes
+  const sectionRef = useRef(null)
+  const lenis = useLenis()
 
-  let imageRef = useRef([])
-
+  // not sure why but adding lenis fixes the animations
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      imageRef.current.forEach((item, index) => {
+      gsap.to(sectionRef.current, { opacity: 1, delay: 1 }, 0)
+
+      gsap.utils.toArray('.anim-image').forEach((item, index) => {
         gsap.fromTo(
           item,
           { opacity: 0, yPercent: 20 },
@@ -39,7 +43,7 @@ function Playground({ data, seo }) {
     })
 
     return () => ctx.revert
-  }, [])
+  }, [lenis])
 
   return (
     <Layout
@@ -56,15 +60,16 @@ function Playground({ data, seo }) {
       contact={seoDoc.contact}
       socials={seoDoc.socials}
     >
-      <PlaygroundWrapper>
+      <PlaygroundWrapper ref={sectionRef}>
         <Container>
           <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 440: 3, 820: 5 }}
+            columnsCountBreakPoints={{ 330: 1, 440: 3, 820: 5 }}
           >
             <Masonry gutter="1rem">
               {doc.images.data.map((item, i) => (
-                <ImageWrapper ref={(el) => (imageRef.current[i] = el)} key={i}>
+                <ImageWrapper key={i}>
                   <Image
+                    className="anim-image"
                     src={
                       process.env.NEXT_PUBLIC_STRAPI_API_URL +
                       item.attributes.url
