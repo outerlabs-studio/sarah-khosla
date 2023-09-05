@@ -2,6 +2,13 @@ export { default as GlobalStyle } from './global'
 export { default as Container } from './container'
 export { default as SmoothScroll } from './scroll'
 export { default as Z } from './z'
-export { ArticleBase, ArticleTitle, TitleHeader } from './text'
+export {
+  ArticleBaseText,
+  ArticleTitleText,
+  TitleHeaderText,
+  ArticleTitle,
+  ArticleBase,
+  TitleHeader,
+} from './text'
 export { lightTheme, darkTheme } from './themes'
 export { media, sizes } from './media'

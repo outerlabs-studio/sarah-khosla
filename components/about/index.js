@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { ArticleBase, media } from 'styles'
+import { ArticleBaseText, media } from 'styles'
 
 export const FullHeightWrapper = styled.main`
   height: 100vh;
@@ -64,7 +64,7 @@ export const ListWrapper = styled.div`
     width: fit-content;
   }
 `
-export const ListTitle = styled(ArticleBase)`
+export const ListTitle = styled(ArticleBaseText)`
   font-weight: 700;
   margin-bottom: 1.5rem;
 `

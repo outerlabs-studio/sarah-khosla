@@ -1,5 +1,6 @@
+import Link from 'next/link'
 import { styled } from 'styled-components'
-import { Container, Z, media } from 'styles'
+import { ArticleBase, Container, Z, media } from 'styles'
 
 export const PageHeader = styled.header`
   position: ${(props) => (props.notfixed ? 'relative' : 'fixed')};
@@ -15,15 +16,17 @@ export const NavWrapper = styled.nav`
   grid-template-columns: 4fr 3fr;
   grid-gap: 15rem;
 
-  .logo {
-    z-index: ${Z.PAGE_HEADER};
-  }
-
-  ${media.desktop`grid-gap: 10rem;`};
+  ${media.desktop`grid-gap: 8rem;`};
   ${media.tablet`
     grid-template-columns: 1fr auto;
     grid-gap: 0;
   `};
+`
+export const Logo = styled(Link)`
+  ${ArticleBase}
+  z-index: ${Z.PAGE_HEADER};
+  color: rgb(${(props) => props.theme.text});
+  text-decoration: none;
 `
 export const Column = styled.div`
   display: flex;
@@ -35,16 +38,20 @@ export const Column = styled.div`
     align-items: normal;
   `};
 
-  a {
-    ${media.tablet`display: none;`};
+  &.nav {
+    a {
+      ${media.tablet`display: none;`};
+    }
+  }
 
+  a {
     &:hover {
       opacity: 0.8;
     }
   }
 `
 export const DescriptionWrapper = styled.div`
-  max-width: 10rem;
+  max-width: 11rem;
   opacity: ${(props) => (props.visible ? 1 : 0)};
 
   ${media.tablet`margin-left: 3rem;`};

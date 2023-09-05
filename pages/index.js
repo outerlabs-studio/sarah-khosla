@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Layout } from 'components'
-import { Container, ArticleBase, TitleHeader } from 'styles'
+import { Container, ArticleBaseText, TitleHeaderText } from 'styles'
 import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
@@ -67,7 +67,7 @@ function Home({ data, seo }) {
     >
       <SectionWrapper>
         <Container>
-          <TitleHeader>Work:</TitleHeader>
+          <TitleHeaderText>Work:</TitleHeaderText>
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 330: 1, 440: 2, 820: 3 }}
           >
@@ -115,7 +115,7 @@ function Home({ data, seo }) {
                       )}
                       className="bottom"
                     />
-                    <ArticleBase>{itemDoc.title}</ArticleBase>
+                    <ArticleBaseText>{itemDoc.title}</ArticleBaseText>
                   </ProjectWrapper>
                 )
               })}
@@ -139,7 +139,7 @@ function Home({ data, seo }) {
                   sizes="100vw"
                   className="bottom"
                 />
-                <ArticleBase>{item.title}</ArticleBase>
+                <ArticleBaseText>{item.title}</ArticleBaseText>
               </ProjectWrapper>
             ))} */}
             </Masonry>

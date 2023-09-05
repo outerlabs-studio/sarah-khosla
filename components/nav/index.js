@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ArticleBase, Container, sizes } from 'styles'
+import { ArticleBaseText, Container, sizes } from 'styles'
 import {
   Column,
   DescriptionWrapper,
   Hamburger,
   LineWrapper,
+  Logo,
   MenuContainer,
   MenuFooter,
   MenuLinks,
@@ -83,30 +84,30 @@ const Nav = ({ email }) => {
       <Container>
         <NavWrapper>
           <Column>
-            <ArticleBase className="logo">
+            <Logo href={'/'}>
               Sarah Khosla
               <br /> Graphic Design & Art Direction
-            </ArticleBase>
+            </Logo>
 
             <DescriptionWrapper visible={router.pathname === '/'}>
               <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[0] = el)}>
+                <ArticleBaseText ref={(el) => (navTextRef.current[0] = el)}>
                   Previously a Sr. Art Director
-                </ArticleBase>
+                </ArticleBaseText>
               </LineWrapper>
               <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[1] = el)}>
+                <ArticleBaseText ref={(el) => (navTextRef.current[1] = el)}>
                   at Stink Studios, currently
-                </ArticleBase>
+                </ArticleBaseText>
               </LineWrapper>
               <LineWrapper>
-                <ArticleBase ref={(el) => (navTextRef.current[2] = el)}>
+                <ArticleBaseText ref={(el) => (navTextRef.current[2] = el)}>
                   freelancing.
-                </ArticleBase>
+                </ArticleBaseText>
               </LineWrapper>
             </DescriptionWrapper>
           </Column>
-          <Column>
+          <Column className='nav'>
             <CustomLink href="/">Selected work</CustomLink>
             <CustomLink href="/playground">Playground</CustomLink>
             <CustomLink href="/about">About</CustomLink>
@@ -123,8 +124,8 @@ const Nav = ({ email }) => {
                   <CustomLink href="/playground">Playground</CustomLink>
                 </MenuLinks>
                 <MenuFooter>
-                  <ArticleBase>&copy; Sarah Khosla</ArticleBase>
-                  <ArticleBase>
+                  <ArticleBaseText>&copy; Sarah Khosla</ArticleBaseText>
+                  <ArticleBaseText>
                     Los Angeles, California
                     <br />
                     <CustomLink
@@ -137,7 +138,7 @@ const Nav = ({ email }) => {
                     >
                       {email ? email : 'hello@sarahkhosla.com'}
                     </CustomLink>
-                  </ArticleBase>
+                  </ArticleBaseText>
                 </MenuFooter>
               </MenuWrapper>
             </Div100vh>

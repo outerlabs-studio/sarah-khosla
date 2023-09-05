@@ -13,7 +13,7 @@ import {
 import Image from 'next/image'
 import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { ArticleBase, Container, sizes } from 'styles'
+import { ArticleBaseText, Container, sizes } from 'styles'
 import { blurHashToDataURL } from 'lib'
 import { useMedia } from 'react-use'
 
@@ -22,7 +22,7 @@ function AboutItem({ item }) {
     return (
       <ListWrapper>
         <ListTitle>{item.title}</ListTitle>
-        <ArticleBase
+        <ArticleBaseText
           dangerouslySetInnerHTML={{
             __html: item.text.replace(/\n/g, '<br/>'),
           }}
@@ -49,9 +49,9 @@ function AboutItem({ item }) {
       <ListWrapper>
         <ListTitle>{item.title}</ListTitle>
         {item.list_item.map((item, index) => (
-          <ArticleBase m={index !== 0 && '0.45rem 0 0 0'} key={index}>
+          <ArticleBaseText m={index !== 0 && '0.45rem 0 0 0'} key={index}>
             {item.text}
-          </ArticleBase>
+          </ArticleBaseText>
         ))}
       </ListWrapper>
     )
@@ -106,7 +106,7 @@ function About({ data, seo }) {
             <DescriptionWrapper>
               <ReactMarkdown
                 components={{
-                  p: ({ node, ...props }) => <ArticleBase nm {...props} />,
+                  p: ({ node, ...props }) => <ArticleBaseText nm {...props} />,
                 }}
               >
                 {doc.description}

@@ -11,7 +11,7 @@ import {
 import { blurHashToDataURL } from 'lib'
 import Image from 'next/image'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
-import { ArticleBase, ArticleTitle, Container } from 'styles'
+import { ArticleBaseText, ArticleTitleText, Container } from 'styles'
 
 function Quativa({ params, data, setTheme, seo }) {
   const doc = data.data[0].attributes
@@ -71,27 +71,27 @@ function Quativa({ params, data, setTheme, seo }) {
           <Hero>
             {params.project !== 'logos' && (
               <TitleWrapper>
-                <ArticleTitle>{doc.title}</ArticleTitle>
+                <ArticleTitleText>{doc.title}</ArticleTitleText>
               </TitleWrapper>
             )}
             <DescriptionWrapper>
               <ReactMarkdown
                 components={{
-                  p: ({ node, ...props }) => <ArticleBase {...props} />,
+                  p: ({ node, ...props }) => <ArticleBaseText {...props} />,
                 }}
               >
                 {doc.description}
               </ReactMarkdown>
               <RoleWrapper>
                 {doc.role && (
-                  <ArticleBase>
+                  <ArticleBaseText>
                     <b>Role:</b> {doc.role}
-                  </ArticleBase>
+                  </ArticleBaseText>
                 )}
                 {doc.studio && (
-                  <ArticleBase>
+                  <ArticleBaseText>
                     <b>Studio:</b> {doc.studio}
-                  </ArticleBase>
+                  </ArticleBaseText>
                 )}
               </RoleWrapper>
             </DescriptionWrapper>

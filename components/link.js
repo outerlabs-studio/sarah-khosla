@@ -6,21 +6,14 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { media } from 'styles'
+import { ArticleBase, media } from 'styles'
 
 const StyledLink = styled.a`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 130%;
+  ${ArticleBase}
   text-decoration: ${(props) => (props.underline ? 'underline' : 'none')};
   color: ${(props) => props.color || `rgb(${props.theme.text})`};
   /* transition: opacity 0.2s ease-in-out; */
   cursor: pointer;
-
-  ${media.phablet`
-    font-size: 11px;
-    line-height: 12.5px;
-  `};
 `
 
 /**

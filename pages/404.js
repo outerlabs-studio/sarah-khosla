@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Layout } from 'components'
 import { FullHeightWrapper } from 'components/about'
 import { styled } from 'styled-components'
-import { Container, ArticleBase, TitleHeader } from 'styles'
+import { Container, ArticleBaseText, TitleHeaderText } from 'styles'
 
 const SectionWrapper = styled.div`
   display: flex;
@@ -22,11 +22,11 @@ function PageNotFound({ seo }) {
       >
         <SectionWrapper>
           <Container>
-            <TitleHeader>404</TitleHeader>
-            <ArticleBase>
+            <TitleHeaderText>404</TitleHeaderText>
+            <ArticleBaseText>
               Either the internet is broken or we couldn’t find the file that
               you were looking for.
-            </ArticleBase>
+            </ArticleBaseText>
           </Container>
         </SectionWrapper>
       </Layout>

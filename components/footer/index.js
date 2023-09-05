@@ -6,7 +6,7 @@ import {
   Column,
   LinkWrapper,
 } from './styles'
-import { ArticleBase, Container } from 'styles'
+import { ArticleBaseText, Container } from 'styles'
 import { useLenis } from '@studio-freight/react-lenis'
 import CustomLink from 'components/link'
 import { useRouter } from 'next/router'
@@ -26,10 +26,10 @@ const Footer = ({ email, socials }) => {
               router.pathname === '/about' || router.pathname === '/404'
             }
           >
-            <ArticleBase>&copy; Sarah Khosla</ArticleBase>
+            <ArticleBaseText>&copy; Sarah Khosla</ArticleBaseText>
             {(router.pathname === '/' || router.pathname === '/playground') && (
               <DescriptionWrapper>
-                <ArticleBase>
+                <ArticleBaseText>
                   Los Angeles, California{' '}
                   <CustomLink
                     href={
@@ -39,7 +39,7 @@ const Footer = ({ email, socials }) => {
                   >
                     {email ? email : 'hello@sarahkhosla.com'}
                   </CustomLink>
-                </ArticleBase>
+                </ArticleBaseText>
               </DescriptionWrapper>
             )}
           </Column>
