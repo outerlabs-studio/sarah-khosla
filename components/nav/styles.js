@@ -107,7 +107,7 @@ export const MenuWrapper = styled(Container)`
   padding-top: 15vh;
   background-color: rgb(${(props) => props.theme.body});
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 `
 export const MenuLinks = styled.div`
   display: flex;

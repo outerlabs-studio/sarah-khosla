@@ -18,6 +18,7 @@ import { useIsomorphicLayoutEffect, useWindowSize } from 'react-use'
 import gsap from 'gsap'
 import { useRouter } from 'next/router'
 import { useLenis } from '@studio-freight/react-lenis'
+import Div100vh from 'react-div-100vh'
 
 const Nav = ({ email }) => {
   let sectionRef = useRef()
@@ -114,28 +115,32 @@ const Nav = ({ email }) => {
         </NavWrapper>
         {menuOpen && (
           <MenuContainer>
-            <MenuWrapper>
-              <MenuLinks>
-                <CustomLink href="/">Selected work</CustomLink>
-                <CustomLink href="/about">About</CustomLink>
-                <CustomLink href="/playground">Playground</CustomLink>
-              </MenuLinks>
-              <MenuFooter>
-                <ArticleBase>&copy; Sarah Khosla</ArticleBase>
-                <ArticleBase>
-                  Los Angeles, California
-                  <br />
-                  <CustomLink
-                    href={
-                      email ? `mailto:${email}` : 'mailto:hello@sarahkhosla.com'
-                    }
-                    target="_blank"
-                  >
-                    {email ? email : 'hello@sarahkhosla.com'}
-                  </CustomLink>
-                </ArticleBase>
-              </MenuFooter>
-            </MenuWrapper>
+            <Div100vh>
+              <MenuWrapper>
+                <MenuLinks>
+                  <CustomLink href="/">Selected work</CustomLink>
+                  <CustomLink href="/about">About</CustomLink>
+                  <CustomLink href="/playground">Playground</CustomLink>
+                </MenuLinks>
+                <MenuFooter>
+                  <ArticleBase>&copy; Sarah Khosla</ArticleBase>
+                  <ArticleBase>
+                    Los Angeles, California
+                    <br />
+                    <CustomLink
+                      href={
+                        email
+                          ? `mailto:${email}`
+                          : 'mailto:hello@sarahkhosla.com'
+                      }
+                      target="_blank"
+                    >
+                      {email ? email : 'hello@sarahkhosla.com'}
+                    </CustomLink>
+                  </ArticleBase>
+                </MenuFooter>
+              </MenuWrapper>
+            </Div100vh>
           </MenuContainer>
         )}
       </Container>
