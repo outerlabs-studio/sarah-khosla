@@ -2,15 +2,14 @@ import styled, { css } from 'styled-components'
 import media from './media'
 
 export const ArticleTitle = css`
-  font-size: 26px;
+  font-size: 40px;
   font-weight: 400;
-  line-height: 29.5px;
+  line-height: 41.5px;
 `
 export const ArticleTitleText = styled.p`
   ${ArticleTitle}
   margin: ${({ nm, m }) => (nm ? 0 : m ? m : 'unset')};
 `
-
 export const ArticleBase = css`
   font-size: 14px;
   font-weight: 400;

@@ -5,15 +5,16 @@ import {
   ContentWrapper,
   DescriptionWrapper,
   ImageWrapper,
-  ListRow,
   ListTitle,
   ListWrapper,
-  RightColumn,
+  LeftCol,
+  RightCol,
+  CustomContainer,
 } from 'components/about'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { ArticleBaseText, Container, sizes } from 'styles'
+import { ArticleBaseText, sizes } from 'styles'
 import { blurHashToDataURL } from 'lib'
 import { useMedia } from 'react-use'
 
@@ -21,7 +22,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.default') {
     return (
       <ListWrapper>
-        <ListTitle>{item.title}</ListTitle>
+        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
         <ArticleBaseText
           dangerouslySetInnerHTML={{
             __html: item.text.replace(/\n/g, '<br/>'),
@@ -34,7 +35,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.links') {
     return (
       <ListWrapper>
-        <ListTitle>{item.title}</ListTitle>
+        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
         {item.link.map((link, index) => (
           <CustomLink key={index} underline href={link.url} target="_blank">
             {link.text}
@@ -47,7 +48,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.list') {
     return (
       <ListWrapper>
-        <ListTitle>{item.title}</ListTitle>
+        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
         {item.list_item.map((item, index) => (
           <ArticleBaseText m={index !== 0 && '0.45rem 0 0 0'} key={index}>
             {item.text}
@@ -60,30 +61,12 @@ function AboutItem({ item }) {
   return null // Handle other cases if needed
 }
 
-function BioImage({ doc }) {
-  return (
-    <Image
-      src={
-        process.env.NEXT_PUBLIC_STRAPI_API_URL + doc.image.data.attributes.url
-      }
-      alt={doc.image.data.attributes.alternativeText}
-      width={doc.image.data.attributes.width}
-      height={doc.image.data.attributes.height}
-      sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
-      className="top"
-      placeholder="blur"
-      blurDataURL={blurHashToDataURL(doc.image.data.attributes.blurhash)}
-    />
-  )
-}
-
 function About({ data, seo }) {
   const doc = data.data.attributes
   const seoDoc = seo.data.attributes
   const mobileView = useMedia(`(max-width: ${sizes.phablet}px)`)
+
+  console.log(doc)
 
   return (
     <FullHeightWrapper>
@@ -101,7 +84,7 @@ function About({ data, seo }) {
         contact={seoDoc.contact}
         socials={seoDoc.socials}
       >
-        <Container>
+        <CustomContainer>
           <ContentWrapper>
             <DescriptionWrapper>
               <ReactMarkdown
@@ -111,31 +94,59 @@ function About({ data, seo }) {
               >
                 {doc.description}
               </ReactMarkdown>
-              {mobileView && (
-                <ImageWrapper>
-                  <BioImage doc={doc} />
-                </ImageWrapper>
-              )}
-              <ListRow>
-                {doc.top_row.map((item, index) => (
-                  <AboutItem key={index} item={item} />
-                ))}
-              </ListRow>
-              <ListRow>
-                {doc.bottom_row.map((item, index) => (
-                  <AboutItem key={index} item={item} />
-                ))}
-              </ListRow>
             </DescriptionWrapper>
-            {!mobileView && (
-              <RightColumn>
-                <ImageWrapper>
-                  <BioImage doc={doc} />
-                </ImageWrapper>
-              </RightColumn>
-            )}
+            <ImageWrapper>
+              <Image
+                src={
+                  process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                  doc.image.data.attributes.url
+                }
+                alt={doc.image.data.attributes.alternativeText}
+                width={doc.image.data.attributes.width}
+                height={doc.image.data.attributes.height}
+                sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
+                className="top"
+                placeholder="blur"
+                blurDataURL={blurHashToDataURL(
+                  doc.image.data.attributes.blurhash,
+                )}
+              />
+            </ImageWrapper>
+            {doc.top_row.map((item, index) => {
+              if (index === 0) {
+                return (
+                  <LeftCol>
+                    <AboutItem key={index} item={item} />
+                  </LeftCol>
+                )
+              } else {
+                return (
+                  <RightCol>
+                    <AboutItem key={index} item={item} />
+                  </RightCol>
+                )
+              }
+            })}
+            {doc.bottom_row.map((item, index) => {
+              if (index === 0) {
+                return (
+                  <LeftCol>
+                    <AboutItem key={index} item={item} />
+                  </LeftCol>
+                )
+              } else {
+                return (
+                  <RightCol>
+                    <AboutItem key={index} item={item} />
+                  </RightCol>
+                )
+              }
+            })}
           </ContentWrapper>
-        </Container>
+        </CustomContainer>
       </Layout>
     </FullHeightWrapper>
   )

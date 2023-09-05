@@ -66,36 +66,36 @@ function Quativa({ params, data, setTheme, seo }) {
       contact={seoDoc.contact}
       socials={seoDoc.socials}
     >
-      <ProjectWrapper>
-        <Container>
-          <Hero>
-            {params.project !== 'logos' && (
-              <TitleWrapper>
-                <ArticleTitleText>{doc.title}</ArticleTitleText>
-              </TitleWrapper>
-            )}
-            <DescriptionWrapper>
-              <ReactMarkdown
-                components={{
-                  p: ({ node, ...props }) => <ArticleBaseText {...props} />,
-                }}
-              >
-                {doc.description}
-              </ReactMarkdown>
-              <RoleWrapper>
-                {doc.role && (
-                  <ArticleBaseText>
-                    <b>Role:</b> {doc.role}
-                  </ArticleBaseText>
-                )}
-                {doc.studio && (
-                  <ArticleBaseText>
-                    <b>Studio:</b> {doc.studio}
-                  </ArticleBaseText>
-                )}
-              </RoleWrapper>
-            </DescriptionWrapper>
-          </Hero>
+      <Container>
+        <ProjectWrapper>
+          
+          {params.project !== 'logos' && (
+            <TitleWrapper>
+              <ArticleTitleText>{doc.title}</ArticleTitleText>
+            </TitleWrapper>
+          )}
+          <DescriptionWrapper>
+            <ReactMarkdown
+              components={{
+                p: ({ node, ...props }) => <ArticleBaseText {...props} />,
+              }}
+            >
+              {doc.description}
+            </ReactMarkdown>
+            <RoleWrapper>
+              {doc.role && (
+                <ArticleBaseText>
+                  <b>Role:</b> {doc.role}
+                </ArticleBaseText>
+              )}
+              {doc.studio && (
+                <ArticleBaseText>
+                  <b>Studio:</b> {doc.studio}
+                </ArticleBaseText>
+              )}
+            </RoleWrapper>
+          </DescriptionWrapper>
+
           {doc.article.map((item, index) => {
             const isBorder = item.border
 
@@ -131,8 +131,8 @@ function Quativa({ params, data, setTheme, seo }) {
 
             return null
           })}
-        </Container>
-      </ProjectWrapper>
+        </ProjectWrapper>
+      </Container>
     </Layout>
   )
 }

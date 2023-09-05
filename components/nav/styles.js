@@ -13,48 +13,76 @@ export const PageHeader = styled.header`
 export const NavWrapper = styled.nav`
   position: relative;
   display: grid;
-  grid-template-columns: 4fr 3fr;
-  grid-gap: 15rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1rem;
 
-  ${media.desktop`grid-gap: 8rem;`};
+  ${media.tablet`grid-template-columns: repeat(4, 1fr);`};
+
+  /* ${media.desktop`grid-gap: 8rem;`};
   ${media.tablet`
     grid-template-columns: 1fr auto;
     grid-gap: 0;
-  `};
+  `}; */
 `
 export const Logo = styled(Link)`
   ${ArticleBase}
+  width: fit-content;
+  height: fit-content;
+  grid-column: 1 / span 2;
   z-index: ${Z.PAGE_HEADER};
   color: rgb(${(props) => props.theme.text});
   text-decoration: none;
+
+  ${media.thone`grid-column: 1 / span 3;`};
 `
 export const Column = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: contents;
+  grid-column: 4 / span 3;
 
   ${media.tablet`
-    justify-content: normal;
+    display: flex;
+    justify-content: flex-end;
     align-items: normal;
   `};
+  ${media.thone`grid-column: -1 / -1;`}
 
   &.nav {
     a {
       ${media.tablet`display: none;`};
     }
   }
+`
+export const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
 
   a {
+    width: fit-content;
+    height: fit-content;
+
     &:hover {
       opacity: 0.8;
     }
   }
+
+  &:first-child {
+    grid-column: 4 / 4;
+  }
+  &:nth-child(2) {
+    grid-column: 5 / 5;
+  }
+  &:last-child {
+    grid-column: 6 / 6;
+  }
 `
 export const DescriptionWrapper = styled.div`
-  max-width: 11rem;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  width: 11rem;
+  display: ${(props) => (props.visible ? 'static' : 'none')};
 
-  ${media.tablet`margin-left: 3rem;`};
+  ${media.tablet`
+    padding-left: 3rem;
+    width: 15rem;
+  `};
   ${media.phone`display: none;`};
 `
 export const LineWrapper = styled.div`

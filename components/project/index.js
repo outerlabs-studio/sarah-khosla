@@ -3,24 +3,23 @@ import { darkTheme, media } from 'styles'
 
 export const ProjectWrapper = styled.article`
   padding-top: 15rem;
-`
-export const Hero = styled.div`
-  display: flex;
-  gap: 5rem;
-
-  ${media.phablet`
-    flex-direction: column;
-    gap: 1rem;
-  `};
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1rem;
 `
 export const TitleWrapper = styled.div`
   width: 50%;
   max-width: 100rem;
+  grid-column: 1 / span 3;
+
+  ${media.phablet`grid-column: 1 / 7;`}
 `
 export const DescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
+  grid-column: 4 / 7;
+
+  ${media.phablet`grid-column: 1 / 7;`}
 `
 export const RoleWrapper = styled.div`
   margin-top: 1.5rem;
@@ -28,6 +27,7 @@ export const RoleWrapper = styled.div`
   gap: 3rem;
 `
 export const ContentViewWrapper = styled.div`
+  grid-column: 1 / 7;
   width: 100%;
   margin-top: 1.5rem;
   display: grid;

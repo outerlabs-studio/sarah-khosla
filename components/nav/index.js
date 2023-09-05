@@ -5,6 +5,7 @@ import {
   DescriptionWrapper,
   Hamburger,
   LineWrapper,
+  LinkWrapper,
   Logo,
   MenuContainer,
   MenuFooter,
@@ -83,34 +84,39 @@ const Nav = ({ email }) => {
     >
       <Container>
         <NavWrapper>
-          <Column>
-            <Logo href={'/'}>
-              Sarah Khosla
-              <br /> Graphic Design & Art Direction
-            </Logo>
+          <Logo href={'/'}>
+            Sarah Khosla
+            <br /> Graphic Design & Art Direction
+          </Logo>
 
-            <DescriptionWrapper visible={router.pathname === '/'}>
-              <LineWrapper>
-                <ArticleBaseText ref={(el) => (navTextRef.current[0] = el)}>
-                  Previously a Sr. Art Director
-                </ArticleBaseText>
-              </LineWrapper>
-              <LineWrapper>
-                <ArticleBaseText ref={(el) => (navTextRef.current[1] = el)}>
-                  at Stink Studios, currently
-                </ArticleBaseText>
-              </LineWrapper>
-              <LineWrapper>
-                <ArticleBaseText ref={(el) => (navTextRef.current[2] = el)}>
-                  freelancing.
-                </ArticleBaseText>
-              </LineWrapper>
-            </DescriptionWrapper>
-          </Column>
-          <Column className='nav'>
-            <CustomLink href="/">Selected work</CustomLink>
-            <CustomLink href="/playground">Playground</CustomLink>
-            <CustomLink href="/about">About</CustomLink>
+          <DescriptionWrapper visible={router.pathname === '/'}>
+            <LineWrapper>
+              <ArticleBaseText ref={(el) => (navTextRef.current[0] = el)}>
+                Previously a Sr. Art Director
+              </ArticleBaseText>
+            </LineWrapper>
+            <LineWrapper>
+              <ArticleBaseText ref={(el) => (navTextRef.current[1] = el)}>
+                at Stink Studios, currently
+              </ArticleBaseText>
+            </LineWrapper>
+            <LineWrapper>
+              <ArticleBaseText ref={(el) => (navTextRef.current[2] = el)}>
+                freelancing.
+              </ArticleBaseText>
+            </LineWrapper>
+          </DescriptionWrapper>
+
+          <Column className="nav">
+            <LinkWrapper>
+              <CustomLink href="/">Selected work</CustomLink>
+            </LinkWrapper>
+            <LinkWrapper>
+              <CustomLink href="/playground">Playground</CustomLink>
+            </LinkWrapper>
+            <LinkWrapper>
+              <CustomLink href="/about">About</CustomLink>
+            </LinkWrapper>
             <Hamburger menuOpen={menuOpen} onClick={toggleMenu} />
           </Column>
         </NavWrapper>

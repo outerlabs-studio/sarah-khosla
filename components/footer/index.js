@@ -66,6 +66,8 @@ const Footer = ({ email, socials }) => {
             <LinkWrapper>
               {router.pathname === '/about' || router.pathname === '/404' ? (
                 <CustomLink href="/">Back to homepage</CustomLink>
+              ) : router.pathname === '/[project]' ? (
+                <CustomLink href="/">Next project</CustomLink>
               ) : (
                 <CustomLink onClick={() => lenis.scrollTo('top')}>
                   Back to top
