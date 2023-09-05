@@ -17,6 +17,7 @@ export default function Layout({
   },
   contact,
   socials,
+  nextProject,
 }) {
   const lenis = useLenis()
   const localRouter = useRouter()
@@ -42,7 +43,7 @@ export default function Layout({
       <Lenis root>
         <Nav email={contact} />
         {children}
-        <Footer email={contact} socials={socials} />
+        <Footer email={contact} socials={socials} nextProject={nextProject} />
       </Lenis>
     </ThemeProvider>
   )

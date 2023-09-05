@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { ArticleBaseText, ArticleTitleText, Container } from 'styles'
 
-function Quativa({ params, data, setTheme, seo }) {
+function Quativa({ params, data, setTheme, seo, nextProject }) {
   const doc = data.data[0].attributes
   const seoDoc = seo.data.attributes
 
@@ -65,10 +65,10 @@ function Quativa({ params, data, setTheme, seo }) {
       }}
       contact={seoDoc.contact}
       socials={seoDoc.socials}
+      nextProject={nextProject.attributes.slug}
     >
       <Container>
         <ProjectWrapper>
-          
           {params.project !== 'logos' && (
             <TitleWrapper>
               <ArticleTitleText>{doc.title}</ArticleTitleText>
@@ -149,7 +149,7 @@ export async function getStaticPaths() {
     },
   )
   const paths = projects.data.data.map((project) => ({
-    params: { project: project.attributes.slug },
+    params: { project: project.attributes.slug, id: project.id },
   }))
 
   return { paths, fallback: false }
@@ -183,6 +183,7 @@ export async function getStaticProps({ params }) {
   //     }
   //   }
   // }
+  const allProjectsURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?sort[0]=id&fields[0]=id&fields[1]=slug`
   const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`
   const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
   const headers = {
@@ -191,9 +192,23 @@ export async function getStaticProps({ params }) {
 
   const dataRes = await axios.get(dataURL, { headers })
   const seoRes = await axios.get(seoURL, { headers })
+  const allProjectsRes = await axios.get(allProjectsURL, { headers })
 
   const data = dataRes.data
   const seo = seoRes.data
+  const allProjects = allProjectsRes.data.data
 
-  return { props: { params, data, seo } }
+  // Calculate the index of the current project
+  const currentIndex = allProjects.findIndex(
+    (project) => project.attributes.slug === params.project,
+  )
+
+  // Determine the index of the next project
+  const nextIndex =
+    currentIndex === allProjects.length - 1 ? 0 : currentIndex + 1
+
+  // Get the next project
+  const nextProject = allProjects[nextIndex]
+
+  return { props: { params, data, seo, nextProject } }
 }
