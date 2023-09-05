@@ -6,7 +6,6 @@ export const PageHeader = styled.header`
   position: ${(props) => (props.notfixed ? 'relative' : 'fixed')};
   width: 100%;
   padding: 1rem 0;
-  overflow: hidden;
   background-color: rgb(${(props) => props.theme.body});
   z-index: ${Z.PAGE_HEADER};
 `
