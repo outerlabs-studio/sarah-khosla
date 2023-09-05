@@ -28,17 +28,23 @@ function Quativa({ params, data, setTheme, seo }) {
           alt={data.alternativeText}
           width={data.width}
           height={data.height}
-          sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
           placeholder="blur"
+          quality={100}
           blurDataURL={blurHashToDataURL(data.blurhash)}
           className={className}
         />
       )
     } else {
-      return <video src={src} autoPlay muted loop className={className} />
+      return (
+        <video
+          src={src}
+          playsInline
+          autoPlay
+          muted
+          loop
+          className={className}
+        />
+      )
     }
   }
 
