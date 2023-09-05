@@ -13,8 +13,9 @@ import {
 import Image from 'next/image'
 import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { ArticleBase, Container } from 'styles'
+import { ArticleBase, Container, sizes } from 'styles'
 import { blurHashToDataURL } from 'lib'
+import { useMedia } from 'react-use'
 
 function AboutItem({ item }) {
   if (item.__component === 'about.default') {
@@ -59,9 +60,30 @@ function AboutItem({ item }) {
   return null // Handle other cases if needed
 }
 
+function BioImage({ doc }) {
+  return (
+    <Image
+      src={
+        process.env.NEXT_PUBLIC_STRAPI_API_URL + doc.image.data.attributes.url
+      }
+      alt={doc.image.data.attributes.alternativeText}
+      width={doc.image.data.attributes.width}
+      height={doc.image.data.attributes.height}
+      sizes="(max-width: 640px) 100vw,
+                        (max-width: 1280px) 50vw,
+                        (max-width: 1536px) 33vw,
+                        25vw"
+      className="top"
+      placeholder="blur"
+      blurDataURL={blurHashToDataURL(doc.image.data.attributes.blurhash)}
+    />
+  )
+}
+
 function About({ data, seo }) {
   const doc = data.data.attributes
   const seoDoc = seo.data.attributes
+  const mobileView = useMedia(`(max-width: ${sizes.phablet}px)`)
 
   return (
     <FullHeightWrapper>
@@ -89,6 +111,11 @@ function About({ data, seo }) {
               >
                 {doc.description}
               </ReactMarkdown>
+              {mobileView && (
+                <ImageWrapper>
+                  <BioImage doc={doc} />
+                </ImageWrapper>
+              )}
               <ListRow>
                 {doc.top_row.map((item, index) => (
                   <AboutItem key={index} item={item} />
@@ -100,28 +127,13 @@ function About({ data, seo }) {
                 ))}
               </ListRow>
             </DescriptionWrapper>
-            <RightColumn>
-              <ImageWrapper>
-                <Image
-                  src={
-                    process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                    doc.image.data.attributes.url
-                  }
-                  alt={doc.image.data.attributes.alternativeText}
-                  width={doc.image.data.attributes.width}
-                  height={doc.image.data.attributes.height}
-                  sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
-                  className="top"
-                  placeholder="blur"
-                  blurDataURL={blurHashToDataURL(
-                    doc.image.data.attributes.blurhash,
-                  )}
-                />
-              </ImageWrapper>
-            </RightColumn>
+            {!mobileView && (
+              <RightColumn>
+                <ImageWrapper>
+                  <BioImage doc={doc} />
+                </ImageWrapper>
+              </RightColumn>
+            )}
           </ContentWrapper>
         </Container>
       </Layout>

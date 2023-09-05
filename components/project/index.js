@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { darkTheme } from 'styles'
+import { darkTheme, media } from 'styles'
 
 export const ProjectWrapper = styled.article`
   padding-top: 15rem;
@@ -7,6 +7,11 @@ export const ProjectWrapper = styled.article`
 export const Hero = styled.div`
   display: flex;
   gap: 5rem;
+
+  ${media.phablet`
+    flex-direction: column;
+    gap: 1rem;
+  `};
 `
 export const TitleWrapper = styled.div`
   width: 50%;

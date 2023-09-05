@@ -1,22 +1,31 @@
-import { useEffect, useRef } from 'react'
-import { ArticleBase, Container } from 'styles'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ArticleBase, Container, sizes } from 'styles'
 import {
   Column,
   DescriptionWrapper,
+  Hamburger,
   LineWrapper,
+  MenuContainer,
+  MenuFooter,
+  MenuLinks,
+  MenuWrapper,
   NavWrapper,
   PageHeader,
 } from './styles'
 import { CustomLink } from 'components'
 // import { SplitText } from 'lib'
-import { useIsomorphicLayoutEffect } from 'react-use'
+import { useIsomorphicLayoutEffect, useWindowSize } from 'react-use'
 import gsap from 'gsap'
 import { useRouter } from 'next/router'
+import { useLenis } from '@studio-freight/react-lenis'
 
-const Nav = () => {
+const Nav = ({ email }) => {
   let sectionRef = useRef()
   let navTextRef = useRef([])
+  const lenis = useLenis()
   const router = useRouter()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { width } = useWindowSize()
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -38,6 +47,33 @@ const Nav = () => {
     return () => ctx.revert()
   }, [])
 
+  const toggleMenu = useCallback(() => {
+    setMenuOpen(!menuOpen)
+  }, [menuOpen])
+
+  const handleResize = useCallback(() => {
+    if (width > sizes.tablet && menuOpen) toggleMenu()
+  }, [menuOpen, toggleMenu])
+
+  const handleKeydown = useCallback(
+    (e) => {
+      if (!menuOpen) return
+
+      if (e.which === 27 || e.key === 'Escape') toggleMenu()
+    },
+    [menuOpen, toggleMenu],
+  )
+
+  useEffect(() => {
+    if (lenis) {
+      if (menuOpen) {
+        lenis.stop()
+      } else {
+        lenis.start()
+      }
+    }
+  }, [menuOpen, lenis])
+
   return (
     <PageHeader
       ref={(el) => (sectionRef = el)}
@@ -46,7 +82,7 @@ const Nav = () => {
       <Container>
         <NavWrapper>
           <Column>
-            <ArticleBase>
+            <ArticleBase className="logo">
               Sarah Khosla
               <br /> Graphic Design & Art Direction
             </ArticleBase>
@@ -73,8 +109,35 @@ const Nav = () => {
             <CustomLink href="/">Selected work</CustomLink>
             <CustomLink href="/playground">Playground</CustomLink>
             <CustomLink href="/about">About</CustomLink>
+            <Hamburger menuOpen={menuOpen} onClick={toggleMenu} />
           </Column>
         </NavWrapper>
+        {menuOpen && (
+          <MenuContainer>
+            <MenuWrapper>
+              <MenuLinks>
+                <CustomLink href="/">Selected work</CustomLink>
+                <CustomLink href="/about">About</CustomLink>
+                <CustomLink href="/playground">Playground</CustomLink>
+              </MenuLinks>
+              <MenuFooter>
+                <ArticleBase>&copy; Sarah Khosla</ArticleBase>
+                <ArticleBase>
+                  Los Angeles, California
+                  <br />
+                  <CustomLink
+                    href={
+                      email ? `mailto:${email}` : 'mailto:hello@sarahkhosla.com'
+                    }
+                    target="_blank"
+                  >
+                    {email ? email : 'hello@sarahkhosla.com'}
+                  </CustomLink>
+                </ArticleBase>
+              </MenuFooter>
+            </MenuWrapper>
+          </MenuContainer>
+        )}
       </Container>
     </PageHeader>
   )

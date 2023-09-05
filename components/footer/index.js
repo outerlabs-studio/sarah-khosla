@@ -21,9 +21,13 @@ const Footer = ({ email, socials }) => {
     >
       <Container>
         <ContentWrapper>
-          <Column>
+          <Column
+            nopadding={
+              router.pathname === '/about' || router.pathname === '/404'
+            }
+          >
             <ArticleBase>&copy; Sarah Khosla</ArticleBase>
-            {router.pathname === '/' || router.pathname === '/playground' ? (
+            {(router.pathname === '/' || router.pathname === '/playground') && (
               <DescriptionWrapper>
                 <ArticleBase>
                   Los Angeles, California{' '}
@@ -37,11 +41,13 @@ const Footer = ({ email, socials }) => {
                   </CustomLink>
                 </ArticleBase>
               </DescriptionWrapper>
-            ) : (
-              <div />
             )}
           </Column>
-          <Column>
+          <Column
+            nopadding={
+              router.pathname === '/about' || router.pathname === '/404'
+            }
+          >
             {router.pathname === '/' ||
             router.pathname === '/playground' ||
             router.pathname === '/[project]' ? (

@@ -3,7 +3,7 @@ import { Layout } from 'components'
 import { Container, ArticleBase, TitleHeader } from 'styles'
 import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
-import Masonry from 'react-responsive-masonry'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import axios from 'axios'
 import { blurHashToDataURL } from 'lib'
 
@@ -68,53 +68,58 @@ function Home({ data, seo }) {
       <SectionWrapper>
         <Container>
           <TitleHeader>Work:</TitleHeader>
-          <Masonry columnsCount={3} gutter="1rem">
-            {projectsDoc.map((item, i) => {
-              const itemDoc = item.attributes
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 1, 440: 2, 820: 3 }}
+          >
+            <Masonry gutter="1rem">
+              {projectsDoc.map((item, i) => {
+                const itemDoc = item.attributes
 
-              return (
-                <ProjectWrapper key={i} href={`/${itemDoc.slug}`}>
-                  <Image
-                    src={
-                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                      itemDoc.display.image.data.attributes.url
-                    }
-                    alt={itemDoc.display.image.data.attributes.alternativeText}
-                    width={itemDoc.display.image.data.attributes.width}
-                    height={itemDoc.display.image.data.attributes.height}
-                    sizes="(max-width: 640px) 100vw,
+                return (
+                  <ProjectWrapper key={i} href={`/${itemDoc.slug}`}>
+                    <Image
+                      src={
+                        process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                        itemDoc.display.image.data.attributes.url
+                      }
+                      alt={
+                        itemDoc.display.image.data.attributes.alternativeText
+                      }
+                      width={itemDoc.display.image.data.attributes.width}
+                      height={itemDoc.display.image.data.attributes.height}
+                      sizes="(max-width: 640px) 100vw,
                         (max-width: 1280px) 50vw,
                         (max-width: 1536px) 33vw,
                         25vw"
-                    placeholder="blur"
-                    blurDataURL={blurHashToDataURL(
-                      itemDoc.display.image.data.attributes.blurhash,
-                    )}
-                    className="top"
-                  />
-                  <Image
-                    src={
-                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                      itemDoc.display.gif.data.attributes.url
-                    }
-                    alt={itemDoc.display.gif.data.attributes.alternativeText}
-                    width={itemDoc.display.gif.data.attributes.width}
-                    height={itemDoc.display.gif.data.attributes.height}
-                    sizes="(max-width: 640px) 100vw,
+                      placeholder="blur"
+                      blurDataURL={blurHashToDataURL(
+                        itemDoc.display.image.data.attributes.blurhash,
+                      )}
+                      className="top"
+                    />
+                    <Image
+                      src={
+                        process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                        itemDoc.display.gif.data.attributes.url
+                      }
+                      alt={itemDoc.display.gif.data.attributes.alternativeText}
+                      width={itemDoc.display.gif.data.attributes.width}
+                      height={itemDoc.display.gif.data.attributes.height}
+                      sizes="(max-width: 640px) 100vw,
                         (max-width: 1280px) 50vw,
                         (max-width: 1536px) 33vw,
                         25vw"
-                    placeholder="blur"
-                    blurDataURL={blurHashToDataURL(
-                      itemDoc.display.gif.data.attributes.blurhash,
-                    )}
-                    className="bottom"
-                  />
-                  <ArticleBase>{itemDoc.title}</ArticleBase>
-                </ProjectWrapper>
-              )
-            })}
-            {/* {items.map((item, i) => (
+                      placeholder="blur"
+                      blurDataURL={blurHashToDataURL(
+                        itemDoc.display.gif.data.attributes.blurhash,
+                      )}
+                      className="bottom"
+                    />
+                    <ArticleBase>{itemDoc.title}</ArticleBase>
+                  </ProjectWrapper>
+                )
+              })}
+              {/* {items.map((item, i) => (
               <ProjectWrapper key={i} href="/quativa">
                 <Image
                   src={item.image}
@@ -137,7 +142,8 @@ function Home({ data, seo }) {
                 <ArticleBase>{item.title}</ArticleBase>
               </ProjectWrapper>
             ))} */}
-          </Masonry>
+            </Masonry>
+          </ResponsiveMasonry>
         </Container>
       </SectionWrapper>
     </Layout>

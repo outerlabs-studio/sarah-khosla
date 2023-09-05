@@ -1,10 +1,14 @@
 import { styled } from 'styled-components'
-import { Z } from 'styles'
+import { Z, media } from 'styles'
 
 export const SectionWrapper = styled.section`
   position: relative;
   padding-top: 15rem;
   z-index: ${Z.SECTION};
+
+  h1 {
+    ${media.tablet`margin-bottom: 2vw;`};
+  }
 `
 export const ProjectWrapper = styled.a`
   position: relative;

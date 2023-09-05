@@ -1,5 +1,6 @@
 const Z = {
   PAGE_HEADER: 999,
+  MENU: 998,
   INVIS_WRAPPER: 2,
   SECTION: 3,
   UNDER_BEAR_SECTION: 2,

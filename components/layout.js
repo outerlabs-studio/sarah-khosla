@@ -40,7 +40,7 @@ export default function Layout({
       <GlobalStyle />
 
       <Lenis root>
-        <Nav />
+        <Nav email={contact} />
         {children}
         <Footer email={contact} socials={socials} />
       </Lenis>

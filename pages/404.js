@@ -14,7 +14,7 @@ function PageNotFound({ seo }) {
   const seoDoc = seo.data.attributes
 
   return (
-    <FullHeightWrapper>
+    <FullHeightWrapper keepheight>
       <Layout
         seo={{ title: `Page not found | ${seoDoc.SEO.title}` }}
         contact={seoDoc.contact}

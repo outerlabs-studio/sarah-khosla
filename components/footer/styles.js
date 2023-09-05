@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { media } from 'styles'
 
 export const PageFooter = styled.footer`
   position: relative;
@@ -11,11 +12,23 @@ export const ContentWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 15rem;
   align-items: bottom;
+
+  ${media.desktop`grid-gap: 5rem;`};
+  ${media.tablet`grid-gap: 0;`};
 `
 export const Column = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  ${media.thone`
+    flex-direction: column;
+    gap: ${(props) => (props.nopadding ? '0' : '1rem')};
+
+    &:first-child {
+      align-items: flex-start;
+    }
+  `};
 `
 export const DescriptionWrapper = styled.div`
   max-width: 10rem;
