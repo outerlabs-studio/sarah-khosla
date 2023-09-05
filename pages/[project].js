@@ -68,7 +68,7 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
       nextProject={nextProject.attributes.slug}
     >
       <Container>
-        <ProjectWrapper>
+        <ProjectWrapper logos={params.project === 'logos'}>
           {params.project !== 'logos' && (
             <TitleWrapper>
               <ArticleTitleText>{doc.title}</ArticleTitleText>

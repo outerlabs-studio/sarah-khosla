@@ -2,10 +2,11 @@ import { styled } from 'styled-components'
 import { darkTheme, media } from 'styles'
 
 export const ProjectWrapper = styled.article`
-  padding-top: 15rem;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: ${(props) =>
+    props.logos ? 'repeat(5, 1fr)' : 'repeat(6, 1fr)'};
   grid-gap: 1rem;
+  padding-top: ${(props) => (props.logos ? '10vh' : '35vh')};
 `
 export const TitleWrapper = styled.div`
   width: 50%;
@@ -27,14 +28,13 @@ export const RoleWrapper = styled.div`
   gap: 3rem;
 `
 export const ContentViewWrapper = styled.div`
-  grid-column: 1 / 7;
+  grid-column: ${(props) => (props.logos ? '3 / 3' : '1 / 7')};
   width: 100%;
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: ${(props) => (props.split ? `repeat(2, 1fr)` : '1fr')};
   gap: 1rem;
-  padding: ${(props) =>
-    props.logos ? '10rem 0' : props.border ? '1.5rem' : 0};
+  padding: ${(props) => (props.logos ? '10vw 0' : props.border ? '1.5rem' : 0)};
   justify-items: ${(props) => (props.logos ? 'center' : 'unset')};
   ${(props) =>
     props.border &&
@@ -42,9 +42,13 @@ export const ContentViewWrapper = styled.div`
     background-color: rgb(${darkTheme.body});
     `}
 
+  ${media.thone`
+    grid-column: ${(props) => (props.logos ? '2 / 5' : '1 / 7')};
+  `}
+
   img,
   video {
-    width: ${(props) => (props.logos ? '15rem' : '100%')};
+    width: 100%;
     height: auto;
     flex: 1;
   }
