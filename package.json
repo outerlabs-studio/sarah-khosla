@@ -10,9 +10,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.13.3",
-    "@strapi/plugin-users-permissions": "4.13.3",
-    "@strapi/strapi": "4.13.3",
+    "@strapi/plugin-i18n": "4.13.2",
+    "@strapi/plugin-users-permissions": "4.13.2",
+    "@strapi/strapi": "4.13.2",
     "pg": "8.11.3",
     "strapi-blurhash": "^1.1.1"
   },
