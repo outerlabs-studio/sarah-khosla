@@ -15,9 +15,9 @@ export const ArticleBase = css`
   font-weight: 400;
   line-height: 15.5px;
 
-  ${media.phablet`
-    font-size: 11px;
-    line-height: 12.5px;
+  ${media.phone`
+    font-size: 16px;
+    line-height: 17.5px;
   `};
 `
 export const ArticleBaseText = styled.p`
