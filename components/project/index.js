@@ -30,7 +30,6 @@ export const RoleWrapper = styled.div`
 export const ContentViewWrapper = styled.div`
   grid-column: ${(props) => (props.logos ? '3 / 3' : '1 / 7')};
   width: 100%;
-  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: ${(props) => (props.split ? `repeat(2, 1fr)` : '1fr')};
   gap: 1rem;
@@ -45,6 +44,10 @@ export const ContentViewWrapper = styled.div`
   ${media.thone`
     grid-column: ${(props) => (props.logos ? '2 / 5' : '1 / 7')};
   `}
+
+  :first-child {
+    margin-top: 1.5rem;
+  }
 
   img,
   video {
