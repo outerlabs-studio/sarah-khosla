@@ -23,9 +23,14 @@ export const DescriptionWrapper = styled.div`
   ${media.phablet`grid-column: 1 / 7;`}
 `
 export const RoleWrapper = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1.5vw;
   display: flex;
-  gap: 3rem;
+  gap: 3vw;
+
+  ${media.tablet`
+    margin-top: 1.5rem;
+    gap: 3rem;
+  `}
 `
 export const ContentViewWrapper = styled.div`
   grid-column: ${(props) => (props.logos ? '6 / 6' : '1 / 7')};
@@ -46,7 +51,9 @@ export const ContentViewWrapper = styled.div`
   `}
 
   :first-child {
-    margin-top: 1.5rem;
+    margin-top: 1vw;
+
+    ${media.tablet`margin-top: 1.5rem;`}
   }
 
   img,

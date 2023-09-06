@@ -22,7 +22,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.default') {
     return (
       <ListWrapper>
-        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
+        <ListTitle>{item.title}</ListTitle>
         <ArticleBaseText
           dangerouslySetInnerHTML={{
             __html: item.text.replace(/\n/g, '<br/>'),
@@ -35,7 +35,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.links') {
     return (
       <ListWrapper>
-        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
+        <ListTitle>{item.title}</ListTitle>
         {item.link.map((link, index) => (
           <CustomLink key={index} underline href={link.url} target="_blank">
             {link.text}
@@ -48,7 +48,7 @@ function AboutItem({ item }) {
   if (item.__component === 'about.list') {
     return (
       <ListWrapper>
-        <ListTitle m={'0 0 1.5rem 0'}>{item.title}</ListTitle>
+        <ListTitle>{item.title}</ListTitle>
         {item.list_item.map((item, index) => (
           <ArticleBaseText m={index !== 0 && '0.45rem 0 0 0'} key={index}>
             {item.text}

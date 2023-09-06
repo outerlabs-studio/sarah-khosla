@@ -71,7 +71,7 @@ function Home({ data, seo }) {
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 330: 1, 440: 2, 820: 3 }}
           >
-            <Masonry gutter="1rem">
+            <Masonry gutter="1vmax">
               {projectsDoc.map((item, i) => {
                 const itemDoc = item.attributes
 

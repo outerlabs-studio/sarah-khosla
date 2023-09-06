@@ -11,9 +11,18 @@ export const ArticleTitleText = styled.p`
   margin: ${({ nm, m }) => (nm ? 0 : m ? m : 'unset')};
 `
 export const ArticleBase = css`
-  font-size: 14px;
+  font-size: 0.95vw;
   font-weight: 400;
-  line-height: 15.5px;
+  line-height: 1.2vw;
+
+  ${media.desktop`
+    font-size: 1.5vw;
+    line-height: 1.6vw;
+  `};
+  ${media.tablet`
+    font-size: 14px;
+    line-height: 15.5px;
+  `};
 
   ${media.phone`
     font-size: 16px;

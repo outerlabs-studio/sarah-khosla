@@ -3,7 +3,7 @@ import { Z, media } from 'styles'
 
 export const SectionWrapper = styled.section`
   position: relative;
-  padding-top: 15rem;
+  padding-top: 30vh;
   z-index: ${Z.SECTION};
 
   h1 {

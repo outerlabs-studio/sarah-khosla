@@ -2,7 +2,6 @@ import {
   LinksWrapper,
   PageFooter,
   ContentWrapper,
-  DescriptionWrapper,
   Column,
   LinkWrapper,
 } from './styles'
@@ -28,19 +27,18 @@ const Footer = ({ email, socials, nextProject }) => {
           >
             <ArticleBaseText>&copy; Sarah Khosla</ArticleBaseText>
             {(router.pathname === '/' || router.pathname === '/playground') && (
-              <DescriptionWrapper>
-                <ArticleBaseText>
-                  Los Angeles, California{' '}
-                  <CustomLink
-                    href={
-                      email ? `mailto:${email}` : 'mailto:hello@sarahkhosla.com'
-                    }
-                    target="_blank"
-                  >
-                    {email ? email : 'hello@sarahkhosla.com'}
-                  </CustomLink>
-                </ArticleBaseText>
-              </DescriptionWrapper>
+              <ArticleBaseText>
+                Los Angeles, California
+                <br />
+                <CustomLink
+                  href={
+                    email ? `mailto:${email}` : 'mailto:hello@sarahkhosla.com'
+                  }
+                  target="_blank"
+                >
+                  {email ? email : 'hello@sarahkhosla.com'}
+                </CustomLink>
+              </ArticleBaseText>
             )}
           </Column>
           <Column

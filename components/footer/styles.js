@@ -13,8 +13,9 @@ export const ContentWrapper = styled.div`
   grid-gap: 15rem;
   align-items: bottom;
 
-  ${media.desktop`grid-gap: 5rem;`};
-  ${media.tablet`grid-gap: 0;`};
+  ${media.desktop`grid-gap: 5rem;`}
+  ${media.tablet`grid-gap: 5vw;`}
+  ${media.phablet`grid-gap: 0;`}
 `
 export const Column = styled.div`
   display: flex;
@@ -29,9 +30,6 @@ export const Column = styled.div`
       align-items: flex-start;
     }
   `};
-`
-export const DescriptionWrapper = styled.div`
-  max-width: 10rem;
 `
 export const LinksWrapper = styled.div`
   display: flex;

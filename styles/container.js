@@ -3,8 +3,8 @@ import media from './media'
 
 const Container = styled.div`
   width: 100%;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 1.5vw;
+  padding-left: 1.5vw;
   margin-right: auto;
   margin-left: auto;
 
