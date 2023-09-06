@@ -34,7 +34,7 @@ export const ProjectWrapper = styled.a`
   }
 
   .bottom {
-    position: ${(props) => (props.isTouchDevice ? 'relative' : 'absolute')};
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 3;

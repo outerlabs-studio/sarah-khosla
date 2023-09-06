@@ -5,13 +5,11 @@ import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import axios from 'axios'
-import { blurHashToDataURL, useIsTouchDevice } from 'lib'
+import { blurHashToDataURL } from 'lib'
 
 function Home({ data, seo }) {
   const seoDoc = seo.data.attributes
   const projectsDoc = data.data
-
-  const isTouchDevice = useIsTouchDevice()
 
   return (
     <Layout
@@ -39,29 +37,27 @@ function Home({ data, seo }) {
                 const itemDoc = item.attributes
 
                 return (
-                  <ProjectWrapper key={i} href={`/${itemDoc.slug}`} isTouchDevice={isTouchDevice}>
-                    {!isTouchDevice && (
-                      <Image
-                        src={
-                          process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                          itemDoc.display.image.data.attributes.url
-                        }
-                        alt={
-                          itemDoc.display.image.data.attributes.alternativeText
-                        }
-                        width={itemDoc.display.image.data.attributes.width}
-                        height={itemDoc.display.image.data.attributes.height}
-                        sizes="(max-width: 640px) 100vw,
+                  <ProjectWrapper key={i} href={`/${itemDoc.slug}`}>
+                    <Image
+                      src={
+                        process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                        itemDoc.display.image.data.attributes.url
+                      }
+                      alt={
+                        itemDoc.display.image.data.attributes.alternativeText
+                      }
+                      width={itemDoc.display.image.data.attributes.width}
+                      height={itemDoc.display.image.data.attributes.height}
+                      sizes="(max-width: 640px) 100vw,
                         (max-width: 1280px) 50vw,
                         (max-width: 1536px) 33vw,
                         25vw"
-                        placeholder="blur"
-                        blurDataURL={blurHashToDataURL(
-                          itemDoc.display.image.data.attributes.blurhash,
-                        )}
-                        className="top"
-                      />
-                    )}
+                      placeholder="blur"
+                      blurDataURL={blurHashToDataURL(
+                        itemDoc.display.image.data.attributes.blurhash,
+                      )}
+                      className="top"
+                    />
                     <Image
                       src={
                         process.env.NEXT_PUBLIC_STRAPI_API_URL +
