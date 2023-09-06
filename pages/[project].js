@@ -107,6 +107,7 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
                   key={index}
                   border={isBorder}
                   logos={params.project === 'logos'}
+                  spacing={index === 0}
                 >
                   {generateMediaJSX(imgData)}
                 </ContentViewWrapper>
@@ -122,6 +123,7 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
                   split
                   border={isBorder}
                   logos={params.project === 'logos'}
+                  spacing={index === 0}
                 >
                   {generateMediaJSX(leftData)}
                   {generateMediaJSX(rightData, 'right')}

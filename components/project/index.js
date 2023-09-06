@@ -45,16 +45,12 @@ export const ContentViewWrapper = styled.div`
     `
     background-color: rgb(${darkTheme.body});
     `}
+  margin-top: ${(props) => (props.spacing ? '1vw' : 0)};
+  ${media.tablet`${(props) => (props.spacing ? '1.5rem' : 0)};`}
 
   ${media.thone`
     grid-column: ${(props) => (props.logos ? '5 / 8' : '1 / 7')};
   `}
-
-  :first-child {
-    margin-top: 1vw;
-
-    ${media.tablet`margin-top: 1.5rem;`}
-  }
 
   img,
   video {

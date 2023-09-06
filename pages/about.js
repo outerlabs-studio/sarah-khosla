@@ -16,7 +16,6 @@ import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ArticleBaseText, sizes } from 'styles'
 import { blurHashToDataURL } from 'lib'
-import { useMedia } from 'react-use'
 
 function AboutItem({ item }) {
   if (item.__component === 'about.default') {
@@ -64,9 +63,6 @@ function AboutItem({ item }) {
 function About({ data, seo }) {
   const doc = data.data.attributes
   const seoDoc = seo.data.attributes
-  const mobileView = useMedia(`(max-width: ${sizes.phablet}px)`)
-
-  console.log(doc)
 
   return (
     <FullHeightWrapper>
