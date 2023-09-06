@@ -4,7 +4,7 @@ import { darkTheme, media } from 'styles'
 export const ProjectWrapper = styled.article`
   display: grid;
   grid-template-columns: ${(props) =>
-    props.logos ? 'repeat(5, 1fr)' : 'repeat(6, 1fr)'};
+    props.logos ? 'repeat(11, 1fr)' : 'repeat(6, 1fr)'};
   grid-gap: 1rem;
   padding-top: ${(props) => (props.logos ? '10vh' : '35vh')};
 `
@@ -28,7 +28,7 @@ export const RoleWrapper = styled.div`
   gap: 3rem;
 `
 export const ContentViewWrapper = styled.div`
-  grid-column: ${(props) => (props.logos ? '3 / 3' : '1 / 7')};
+  grid-column: ${(props) => (props.logos ? '6 / 6' : '1 / 7')};
   width: 100%;
   display: grid;
   grid-template-columns: ${(props) => (props.split ? `repeat(2, 1fr)` : '1fr')};
@@ -42,7 +42,7 @@ export const ContentViewWrapper = styled.div`
     `}
 
   ${media.thone`
-    grid-column: ${(props) => (props.logos ? '2 / 5' : '1 / 7')};
+    grid-column: ${(props) => (props.logos ? '5 / 8' : '1 / 7')};
   `}
 
   :first-child {
