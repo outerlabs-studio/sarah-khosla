@@ -5,50 +5,13 @@ import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import axios from 'axios'
-import { blurHashToDataURL } from 'lib'
-
-// const items = [
-//   {
-//     title: 'HBO Max, Scene in Black Network',
-//     image: '/images/hbo/cover.jpg',
-//     gif: '/images/hbo/video.gif',
-//     link: '/hbo',
-//   },
-//   {
-//     title: 'Quativa, All-in-one',
-//     image: '/images/quativa/cover.jpg',
-//     gif: '/images/quativa/video.gif',
-//     link: '/quativa',
-//   },
-//   {
-//     title: 'Templum, Next Generation',
-//     image: '/images/templum/cover.jpg',
-//     gif: '/images/templum/video.gif',
-//     link: '/templum',
-//   },
-//   {
-//     title: 'Target, GiftNow',
-//     image: '/images/giftnow/cover.jpg',
-//     gif: '/images/giftnow/video.gif',
-//     link: '/giftnow',
-//   },
-//   {
-//     title: 'Iggy Rosales',
-//     image: '/images/iggy/cover.jpg',
-//     gif: '/images/iggy/video.gif',
-//     link: '/iggy',
-//   },
-//   {
-//     title: 'All Day Kitchens',
-//     image: '/images/allday/cover.jpg',
-//     gif: '/images/allday/video.gif',
-//     link: '/allday',
-//   },
-// ]
+import { blurHashToDataURL, useIsTouchDevice } from 'lib'
 
 function Home({ data, seo }) {
   const seoDoc = seo.data.attributes
   const projectsDoc = data.data
+
+  const isTouchDevice = useIsTouchDevice()
 
   return (
     <Layout
@@ -76,27 +39,29 @@ function Home({ data, seo }) {
                 const itemDoc = item.attributes
 
                 return (
-                  <ProjectWrapper key={i} href={`/${itemDoc.slug}`}>
-                    <Image
-                      src={
-                        process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                        itemDoc.display.image.data.attributes.url
-                      }
-                      alt={
-                        itemDoc.display.image.data.attributes.alternativeText
-                      }
-                      width={itemDoc.display.image.data.attributes.width}
-                      height={itemDoc.display.image.data.attributes.height}
-                      sizes="(max-width: 640px) 100vw,
+                  <ProjectWrapper key={i} href={`/${itemDoc.slug}`} isTouchDevice={isTouchDevice}>
+                    {!isTouchDevice && (
+                      <Image
+                        src={
+                          process.env.NEXT_PUBLIC_STRAPI_API_URL +
+                          itemDoc.display.image.data.attributes.url
+                        }
+                        alt={
+                          itemDoc.display.image.data.attributes.alternativeText
+                        }
+                        width={itemDoc.display.image.data.attributes.width}
+                        height={itemDoc.display.image.data.attributes.height}
+                        sizes="(max-width: 640px) 100vw,
                         (max-width: 1280px) 50vw,
                         (max-width: 1536px) 33vw,
                         25vw"
-                      placeholder="blur"
-                      blurDataURL={blurHashToDataURL(
-                        itemDoc.display.image.data.attributes.blurhash,
-                      )}
-                      className="top"
-                    />
+                        placeholder="blur"
+                        blurDataURL={blurHashToDataURL(
+                          itemDoc.display.image.data.attributes.blurhash,
+                        )}
+                        className="top"
+                      />
+                    )}
                     <Image
                       src={
                         process.env.NEXT_PUBLIC_STRAPI_API_URL +
@@ -119,29 +84,6 @@ function Home({ data, seo }) {
                   </ProjectWrapper>
                 )
               })}
-              {/* {items.map((item, i) => (
-              <ProjectWrapper key={i} href="/quativa">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  quality={90}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  className="top"
-                />
-                <Image
-                  src={item.gif}
-                  alt={item.title}
-                  quality={90}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  className="bottom"
-                />
-                <ArticleBaseText>{item.title}</ArticleBaseText>
-              </ProjectWrapper>
-            ))} */}
             </Masonry>
           </ResponsiveMasonry>
         </Container>
