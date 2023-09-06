@@ -16,6 +16,12 @@ export const NavWrapper = styled.nav`
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1rem;
 
+  a {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
   ${media.tablet`
     display: flex;
     justify-content: space-between;
@@ -60,10 +66,6 @@ export const LinkWrapper = styled.div`
   a {
     width: fit-content;
     height: fit-content;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 
   &:first-child {
