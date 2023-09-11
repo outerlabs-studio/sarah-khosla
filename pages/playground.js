@@ -20,7 +20,7 @@ function Playground({ data, seo }) {
   // not sure why but adding lenis fixes the animations
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.to(sectionRef.current, { opacity: 1, delay: 1 }, 0)
+      gsap.set(sectionRef.current, { autoAlpha: 1, delay: 0.1 }, 0)
 
       gsap.utils.toArray('.anim-image').forEach((item, index) => {
         gsap.fromTo(
