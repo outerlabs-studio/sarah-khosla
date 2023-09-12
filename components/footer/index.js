@@ -19,7 +19,9 @@ const Footer = ({ email, socials, nextProject }) => {
       nopadding={router.pathname === '/about' || router.pathname === '/404'}
     >
       <Container>
-        <ContentWrapper>
+        <ContentWrapper
+          nopadding={router.pathname === '/about' || router.pathname === '/404'}
+        >
           <Column
             nopadding={
               router.pathname === '/about' || router.pathname === '/404'

@@ -17,7 +17,8 @@ export const ContentWrapper = styled.div`
   ${media.tablet`grid-gap: 5vw;`}
   ${media.phablet`grid-gap: 0;`}
   ${media.phone`
-    grid-template-columns: 1fr;
+    grid-template-columns: ${(props) =>
+      props.nopadding ? 'repeat(2, 1fr)' : '1fr'};
     grid-gap: 1rem;
   `}
 `
@@ -26,21 +27,18 @@ export const Column = styled.div`
   justify-content: space-between;
   align-items: flex-end;
 
+  &:first-child {
+    ${media.thone`align-items: flex-start;`}
+    ${media.phone`flex-direction: column;`}
+  }
+
   ${media.thone`
     flex-direction: column;
     gap: ${(props) => (props.nopadding ? '0' : '1rem')};
-
-    &:first-child {
-      align-items: flex-start;
-    }
   `};
   ${media.phone`
     align-items: flex-start;
     flex-direction: row;
-
-    &:last-child {
-      flex-direction: row-reverse;
-    }
   `}
 `
 export const LinksWrapper = styled.div`
