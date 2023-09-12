@@ -16,6 +16,10 @@ export const ContentWrapper = styled.div`
   ${media.desktop`grid-gap: 5rem;`}
   ${media.tablet`grid-gap: 5vw;`}
   ${media.phablet`grid-gap: 0;`}
+  ${media.phone`
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  `}
 `
 export const Column = styled.div`
   display: flex;
@@ -30,6 +34,14 @@ export const Column = styled.div`
       align-items: flex-start;
     }
   `};
+  ${media.phone`
+    align-items: flex-start;
+    flex-direction: row;
+
+    &:last-child {
+      flex-direction: row-reverse;
+    }
+  `}
 `
 export const LinksWrapper = styled.div`
   display: flex;
