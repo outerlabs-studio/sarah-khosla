@@ -6,7 +6,6 @@ export const FullHeightWrapper = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  gap: 1rem;
 
   @media (max-width: ${sizes.tablet}px) and (orientation: landscape) {
     height: ${(props) => (props.keepheight ? '100vh' : 'auto')};

@@ -20,17 +20,30 @@ export const DescriptionWrapper = styled.div`
   flex-direction: column;
   grid-column: 4 / 7;
 
+  p {
+    &:not(:first-child) {
+      margin-top: 1.5vw;
+      ${media.tablet`margin-top: 1rem;`}
+    }
+  }
+  /* a {
+    color: rgb(${(props) => props.theme.text});
+    text-decoration: underline;
+  } */
+
   ${media.phablet`grid-column: 1 / 7;`}
 `
 export const RoleWrapper = styled.div`
-  margin-top: 1.5vw;
   display: flex;
   gap: 3vw;
+  grid-column: 4 / 7;
+  margin-top: 1.5vw;
 
   ${media.tablet`
     margin-top: 1.5rem;
     gap: 3rem;
   `}
+  ${media.phablet`grid-column: 1 / 7;`}
 `
 export const ContentViewWrapper = styled.div`
   grid-column: ${(props) => (props.logos ? '6 / 6' : '1 / 7')};

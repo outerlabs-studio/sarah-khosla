@@ -86,6 +86,9 @@ function About({ data, seo }) {
               <ReactMarkdown
                 components={{
                   p: ({ node, ...props }) => <ArticleBaseText nm {...props} />,
+                  a: ({ node, ...props }) => (
+                    <CustomLink {...props} target="_blank" underline />
+                  ),
                 }}
               >
                 {doc.description}

@@ -4,7 +4,10 @@ import { media } from 'styles'
 export const PageFooter = styled.footer`
   position: relative;
   width: 100%;
-  padding: ${(props) => (props.nopadding ? '0 0 2rem' : '15rem 0 2rem')};
+  padding: ${(props) => (props.nopadding ? '0 0 1vw' : '15vw 0 1vw')};
+
+  ${media.desktop`padding: ${(props) =>
+    props.nopadding ? '0 0 1rem' : '15rem 0 1rem'};`}
 `
 export const ContentWrapper = styled.div`
   position: relative;

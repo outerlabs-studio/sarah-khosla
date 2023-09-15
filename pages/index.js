@@ -48,8 +48,8 @@ function Home({ data, seo }) {
                       }
                       width={itemDoc.display.image.data.attributes.width}
                       height={itemDoc.display.image.data.attributes.height}
-                      sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
+                      sizes="(max-width: 330px) 100vw,
+                        (max-width: 820px) 50vw,
                         (max-width: 1536px) 33vw,
                         25vw"
                       placeholder="blur"

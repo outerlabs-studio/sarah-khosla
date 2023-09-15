@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Layout } from 'components'
+import { CustomLink, Layout } from 'components'
 import {
   ProjectWrapper,
   Hero,
@@ -29,7 +29,6 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
           width={data.width}
           height={data.height}
           placeholder="blur"
-          quality={100}
           blurDataURL={blurHashToDataURL(data.blurhash)}
           className={className}
         />
@@ -78,23 +77,26 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
             <ReactMarkdown
               components={{
                 p: ({ node, ...props }) => <ArticleBaseText {...props} />,
+                a: ({ node, ...props }) => (
+                  <CustomLink {...props} target="_blank" underline />
+                ),
               }}
             >
               {doc.description}
             </ReactMarkdown>
-            <RoleWrapper>
-              {doc.role && (
-                <ArticleBaseText>
-                  <b>Role:</b> {doc.role}
-                </ArticleBaseText>
-              )}
-              {doc.studio && (
-                <ArticleBaseText>
-                  <b>Studio:</b> {doc.studio}
-                </ArticleBaseText>
-              )}
-            </RoleWrapper>
           </DescriptionWrapper>
+          <RoleWrapper>
+            {doc.role && (
+              <ArticleBaseText>
+                <b>Role:</b> {doc.role}
+              </ArticleBaseText>
+            )}
+            {doc.studio && (
+              <ArticleBaseText>
+                <b>Studio:</b> {doc.studio}
+              </ArticleBaseText>
+            )}
+          </RoleWrapper>
 
           {doc.article.map((item, index) => {
             const isBorder = item.border

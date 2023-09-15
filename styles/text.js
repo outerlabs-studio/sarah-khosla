@@ -17,11 +17,11 @@ export const ArticleBase = css`
 
   ${media.desktop`
     font-size: 1.5vw;
-    line-height: 1.6vw;
+    line-height: 2vw;
   `};
   ${media.tablet`
     font-size: 14px;
-    line-height: 15.5px;
+    line-height: 140%;
   `};
 
   ${media.phone`
