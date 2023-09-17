@@ -54,6 +54,9 @@
     "subtitle": {
       "type": "string",
       "required": false
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }
