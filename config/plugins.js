@@ -5,4 +5,7 @@ module.exports = {
       regenerateOnUpdate: true,
     },
   },
+  "drag-drop-content-types": {
+    enabled: true,
+  },
 };
