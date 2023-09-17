@@ -105,7 +105,7 @@ export async function getStaticProps() {
   //     }
   //    }
   // }
-  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?sort[0]=id&fields[0]=slug&fields[1]=title&populate[display][populate]=*`
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?sort[0]=rank:asc&fields[0]=slug&fields[1]=title&populate[display][populate]=*`
   const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
   const headers = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
