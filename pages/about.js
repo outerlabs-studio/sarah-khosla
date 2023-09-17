@@ -103,10 +103,7 @@ function About({ data, seo }) {
                 alt={doc.image.data.attributes.alternativeText}
                 width={doc.image.data.attributes.width}
                 height={doc.image.data.attributes.height}
-                sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
+                sizes={`(max-width: ${sizes.phablet}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
                 className="top"
                 placeholder="blur"
                 blurDataURL={blurHashToDataURL(

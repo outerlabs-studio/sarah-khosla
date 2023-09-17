@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Layout } from 'components'
-import { Container, ArticleBaseText, TitleHeaderText } from 'styles'
+import { Container, ArticleBaseText, TitleHeaderText, sizes } from 'styles'
 import Image from 'next/image'
 import { ProjectWrapper, SectionWrapper } from 'components/work'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
@@ -48,10 +48,7 @@ function Home({ data, seo }) {
                       }
                       width={itemDoc.display.image.data.attributes.width}
                       height={itemDoc.display.image.data.attributes.height}
-                      sizes="(max-width: 330px) 100vw,
-                        (max-width: 820px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
+                      sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
                       placeholder="blur"
                       blurDataURL={blurHashToDataURL(
                         itemDoc.display.image.data.attributes.blurhash,
@@ -66,10 +63,7 @@ function Home({ data, seo }) {
                       alt={itemDoc.display.gif.data.attributes.alternativeText}
                       width={itemDoc.display.gif.data.attributes.width}
                       height={itemDoc.display.gif.data.attributes.height}
-                      sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
+                      sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
                       placeholder="blur"
                       blurDataURL={blurHashToDataURL(
                         itemDoc.display.gif.data.attributes.blurhash,

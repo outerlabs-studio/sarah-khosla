@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { useRef } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { useIsomorphicLayoutEffect } from 'react-use'
-import { Container } from 'styles'
+import { Container, sizes } from 'styles'
 
 function Playground({ data, seo }) {
   const doc = data.data.attributes
@@ -77,10 +77,7 @@ function Playground({ data, seo }) {
                     alt={item.attributes.alternativeText}
                     width={item.attributes.width}
                     height={item.attributes.height}
-                    sizes="(max-width: 640px) 100vw,
-                        (max-width: 1280px) 50vw,
-                        (max-width: 1536px) 33vw,
-                        25vw"
+                    sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 33vw, 20vw`}
                     placeholder="blur"
                     blurDataURL={blurHashToDataURL(item.attributes.blurhash)}
                   />
