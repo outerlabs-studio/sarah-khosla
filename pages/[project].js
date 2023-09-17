@@ -17,6 +17,8 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
   const doc = data.data[0].attributes
   const seoDoc = seo.data.attributes
 
+  console.log(doc)
+
   const generateMediaJSX = (data, className = '') => {
     const isImage = data.mime.startsWith('image/')
     const src = process.env.NEXT_PUBLIC_STRAPI_API_URL + data.url
@@ -71,6 +73,7 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
           {params.project !== 'logos' && (
             <TitleWrapper>
               <ArticleTitleText>{doc.title}</ArticleTitleText>
+              <ArticleBaseText>{doc.subtitle}</ArticleBaseText>
             </TitleWrapper>
           )}
           <DescriptionWrapper>
@@ -166,6 +169,7 @@ export async function getStaticProps({ params }) {
   //     'slug',
   //     'light',
   //     'title',
+  //     'subtitle',
   //     'description',
   //     'role',
   //     'studio'
@@ -188,7 +192,7 @@ export async function getStaticProps({ params }) {
   //   }
   // }
   const allProjectsURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?sort[0]=id&fields[0]=id&fields[1]=slug`
-  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=description&fields[4]=role&fields[5]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`
+  const dataURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/projects?filters[slug][$eq]=${params.project}&fields[0]=slug&fields[1]=light&fields[2]=title&fields[3]=subtitle&fields[4]=description&fields[5]=role&fields[6]=studio&populate[display][populate]=*&populate[article][populate]=*&populate[article][on][project.cover][populate]=*&populate[article][on][project.split][populate]=*`
   const seoURL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/global?fields[0]=contact&populate[SEO][populate]=*&populate[socials][populate]=*`
   const headers = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
