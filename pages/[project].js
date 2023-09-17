@@ -17,8 +17,6 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
   const doc = data.data[0].attributes
   const seoDoc = seo.data.attributes
 
-  console.log(doc)
-
   const generateMediaJSX = (data, className = '') => {
     const isImage = data.mime.startsWith('image/')
     const src = process.env.NEXT_PUBLIC_STRAPI_API_URL + data.url
