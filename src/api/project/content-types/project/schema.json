@@ -50,6 +50,10 @@
     },
     "studio": {
       "type": "string"
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
     }
   }
 }
