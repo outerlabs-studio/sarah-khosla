@@ -9,8 +9,9 @@ export const ProjectWrapper = styled.article`
   padding-top: ${(props) => (props.logos ? '10vh' : '35vh')};
 `
 export const TitleWrapper = styled.div`
-  width: 50%;
-  max-width: 100rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75vmax;
   grid-column: 1 / span 3;
 
   ${media.phablet`grid-column: 1 / 7;`}
