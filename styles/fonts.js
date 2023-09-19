@@ -1,7 +1,8 @@
 import localFont from 'next/font/local'
 
-export const haffer = localFont({
+const haffer = localFont({
   adjustFontFallback: 'Arial',
+  variable: '--font',
   src: [
     {
       path: '../assets/fonts/HafferSQ-Light.woff2',
@@ -30,3 +31,5 @@ export const haffer = localFont({
     },
   ],
 })
+
+export default haffer

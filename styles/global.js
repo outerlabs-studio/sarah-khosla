@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
 import SmoothScroll from './scroll'
-import { haffer } from './fonts'
 
 // https://github.com/necolas/normalize.css
 const normalize = `
@@ -10,10 +9,7 @@ const normalize = `
 const GlobalStyle = createGlobalStyle`
   ${normalize}
   ${SmoothScroll}
-
-  :root {
-    --font: ${haffer.style.fontFamily};
-  }
+  
   html {
     box-sizing: border-box;
     width: 100%;
@@ -36,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     background: ${({ theme }) => `rgb(${theme.body})`};
     color: ${({ theme }) => `rgb(${theme.text})`};
-    font-family: var(--font);
     overscroll-behavior-y: none;
   }
 

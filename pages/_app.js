@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useLenis } from '@studio-freight/react-lenis'
 import Tempus from '@studio-freight/tempus'
-import { GlobalStyle, darkTheme, lightTheme } from 'styles'
+import { GlobalStyle, darkTheme, haffer, lightTheme } from 'styles'
 import { RealViewport } from 'lib'
 import { ThemeProvider } from 'styled-components'
 
@@ -50,8 +50,10 @@ function App({ Component, pageProps }) {
         </>
       )} */}
 
-      <RealViewport />
-      <Component {...pageProps} />
+      <div className={haffer.className}>
+        <RealViewport />
+        <Component {...pageProps} />
+      </div>
     </>
   )
 }

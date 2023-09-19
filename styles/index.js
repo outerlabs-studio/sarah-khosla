@@ -12,3 +12,4 @@ export {
 } from './text'
 export { lightTheme, darkTheme } from './themes'
 export { media, sizes } from './media'
+export { default as haffer } from './fonts'
