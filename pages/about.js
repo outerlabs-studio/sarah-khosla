@@ -106,6 +106,7 @@ function About({ data, seo }) {
                 sizes={`(max-width: ${sizes.phablet}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
                 className="top"
                 placeholder="blur"
+                priority
                 blurDataURL={blurHashToDataURL(
                   doc.image.data.attributes.blurhash,
                 )}
