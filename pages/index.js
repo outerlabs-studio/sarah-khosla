@@ -25,6 +25,7 @@ function Home({ data, seo }) {
       }}
       contact={seoDoc.contact}
       socials={seoDoc.socials}
+      theme={'dark'}
     >
       <SectionWrapper>
         <Container>
