@@ -64,6 +64,7 @@ function Playground({ data, seo }) {
         <Container>
           <Masonry
             className="masonary-grid"
+            columnClassName="masonary-grid-column"
             breakpointCols={{ 440: 1, 820: 3, default: 5 }}
           >
             {doc.images.data.map((item, i) => (

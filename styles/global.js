@@ -45,6 +45,11 @@ const GlobalStyle = createGlobalStyle`
     width: auto;
     gap: 1vmax;
   }
+  .masonary-grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+  }
 
   @supports (font: -apple-system-body) and (-webkit-appearance: none) {
     img[loading='lazy'] {
