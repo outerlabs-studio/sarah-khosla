@@ -6,6 +6,7 @@ import Tempus from '@studio-freight/tempus'
 import { GlobalStyle, darkTheme, lightTheme } from 'styles'
 import { RealViewport } from 'lib'
 import { ThemeProvider } from 'styled-components'
+import { haffer } from 'styles/fonts'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -51,7 +52,9 @@ function App({ Component, pageProps }) {
       )} */}
 
       <RealViewport />
-      <Component {...pageProps} />
+      <div className={haffer.className}>
+        <Component {...pageProps} />
+      </div>
     </>
   )
 }

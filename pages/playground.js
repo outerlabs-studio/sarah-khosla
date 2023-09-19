@@ -7,7 +7,7 @@ import gsap from 'gsap'
 import { blurHashToDataURL } from 'lib'
 import Image from 'next/image'
 import { useRef } from 'react'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import Masonry from 'react-masonry-css'
 import { useIsomorphicLayoutEffect } from 'react-use'
 import { Container, sizes } from 'styles'
 
@@ -62,29 +62,27 @@ function Playground({ data, seo }) {
     >
       <PlaygroundWrapper ref={sectionRef}>
         <Container>
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 330: 1, 440: 3, 820: 5 }}
+          <Masonry
+            className="masonary-grid"
+            breakpointCols={{ 440: 1, 820: 3, default: 5 }}
           >
-            <Masonry gutter="1rem">
-              {doc.images.data.map((item, i) => (
-                <ImageWrapper key={i}>
-                  <Image
-                    className="anim-image"
-                    src={
-                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                      item.attributes.url
-                    }
-                    alt={item.attributes.alternativeText}
-                    width={item.attributes.width}
-                    height={item.attributes.height}
-                    sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 33vw, 20vw`}
-                    placeholder="blur"
-                    blurDataURL={blurHashToDataURL(item.attributes.blurhash)}
-                  />
-                </ImageWrapper>
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+            {doc.images.data.map((item, i) => (
+              <ImageWrapper key={i}>
+                <Image
+                  className="anim-image"
+                  src={
+                    process.env.NEXT_PUBLIC_STRAPI_API_URL + item.attributes.url
+                  }
+                  alt={item.attributes.alternativeText}
+                  width={item.attributes.width}
+                  height={item.attributes.height}
+                  sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 33vw, 20vw`}
+                  placeholder="blur"
+                  blurDataURL={blurHashToDataURL(item.attributes.blurhash)}
+                />
+              </ImageWrapper>
+            ))}
+          </Masonry>
         </Container>
       </PlaygroundWrapper>
     </Layout>

@@ -40,6 +40,12 @@ const GlobalStyle = createGlobalStyle`
     overscroll-behavior-y: none;
   }
 
+  .masonary-grid {
+    display: flex;
+    width: auto;
+    gap: 1vmax;
+  }
+
   @supports (font: -apple-system-body) and (-webkit-appearance: none) {
     img[loading='lazy'] {
       clip-path: inset(0.6px);
