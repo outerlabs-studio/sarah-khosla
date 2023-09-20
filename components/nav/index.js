@@ -117,7 +117,11 @@ const Nav = ({ email }) => {
             <LinkWrapper>
               <CustomLink href="/about">About</CustomLink>
             </LinkWrapper>
-            <Hamburger menuOpen={menuOpen} onClick={toggleMenu} />
+            <Hamburger
+              menuOpen={menuOpen}
+              onClick={toggleMenu}
+              aria-label="Menu"
+            />
           </Column>
         </NavWrapper>
         {menuOpen && (
