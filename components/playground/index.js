@@ -7,7 +7,8 @@ export const PlaygroundWrapper = styled.section`
   visibility: hidden;
 `
 export const ImageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+  img {
+    width: 100%;
+    height: auto;
+  }
 `

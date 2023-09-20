@@ -3,8 +3,8 @@ import media from './media'
 
 const Container = styled.div`
   width: 100%;
-  padding-right: 1.5vw;
-  padding-left: 1.5vw;
+  padding-right: 1.5rem; // 1.5vw
+  padding-left: 1.5rem; // 1.5vw
   margin-right: auto;
   margin-left: auto;
 
@@ -12,10 +12,10 @@ const Container = styled.div`
     padding-right: 1rem;
     padding-left: 1rem;
   `};
-  ${media.phone`
+  /* ${media.phone`
     padding-right: 3.5vw;
     padding-left: 3.5vw; 
-  `};
+  `}; */
 `
 
 export default Container

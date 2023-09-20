@@ -11,23 +11,23 @@ export const ArticleTitleText = styled.p`
   margin: ${({ nm, m }) => (nm ? 0 : m ? m : 'unset')};
 `
 export const ArticleBase = css`
-  font-size: 0.95vw;
+  font-size: 14px; // 0.95vw
   font-weight: 400;
-  line-height: 1.2vw;
+  line-height: 16px; // 1.2vw
 
-  ${media.desktop`
+  /* ${media.desktop`
     font-size: 1.5vw;
     line-height: 2vw;
   `};
   ${media.tablet`
     font-size: 14px;
     line-height: 140%;
-  `};
+  `}; */
 
   ${media.phone`
     font-size: 16px;
     line-height: 17.5px;
-  `};
+  `}
 `
 export const ArticleBaseText = styled.p`
   ${ArticleBase}

@@ -26,7 +26,7 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
         <Image
           src={src}
           alt={data.alternativeText}
-          width={data.width}
+          width="1920"
           height={data.height}
           placeholder="blur"
           blurDataURL={blurHashToDataURL(data.blurhash)}

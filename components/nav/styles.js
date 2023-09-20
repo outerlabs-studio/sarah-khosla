@@ -5,11 +5,11 @@ import { ArticleBase, Container, Z, media } from 'styles'
 export const PageHeader = styled.header`
   position: ${(props) => (props.notfixed ? 'relative' : 'fixed')};
   width: 100%;
-  padding: 1vw 0;
+  padding: 1rem 0; // 1vw 0
   background-color: rgb(${(props) => props.theme.body});
   z-index: ${Z.PAGE_HEADER};
 
-  ${media.desktop`padding: 1rem 0;`}
+  /* ${media.desktop`padding: 1rem 0;`} */
 `
 export const NavWrapper = styled.nav`
   position: relative;
@@ -81,10 +81,9 @@ export const LinkWrapper = styled.div`
   }
 `
 export const DescriptionWrapper = styled.div`
-  width: 15vw;
+  width: 13rem; // 15vw
   opacity: ${(props) => (props.visible ? '1' : '0')};
 
-  ${media.desktop`width: 20vw;`}
   ${media.tablet`width: 11rem;`}
   ${media.phone`display: none;`}
 `
