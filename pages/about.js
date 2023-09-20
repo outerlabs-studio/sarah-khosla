@@ -101,9 +101,9 @@ function About({ data, seo }) {
                   doc.image.data.attributes.url
                 }
                 alt={doc.image.data.attributes.alternativeText}
-                width={doc.image.data.attributes.width}
-                height={doc.image.data.attributes.height}
-                sizes={`(max-width: ${sizes.phablet}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
+                fill
+                objectFit="cover"
+                sizes={`(min-width: ${sizes.tablet}px) 31.2vw, (min-width: ${sizes.phablet}px) calc(59vw - 102px), 94.5vw`}
                 className="top"
                 placeholder="blur"
                 priority

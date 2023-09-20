@@ -63,7 +63,7 @@ function Home({ data, seo }) {
                     alt={itemDoc.display.gif.data.attributes.alternativeText}
                     width={itemDoc.display.gif.data.attributes.width}
                     height={itemDoc.display.gif.data.attributes.height}
-                    sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 50vw, 33vw`}
+                    sizes={`(min-width: ${sizes.tablet}px) 31.67vw, (min-width: ${sizes.phone}px) calc(50.56vw - 21px), 92.86vw`}
                     placeholder="blur"
                     blurDataURL={blurHashToDataURL(
                       itemDoc.display.gif.data.attributes.blurhash,

@@ -61,6 +61,8 @@ export const ImageWrapper = styled.div`
   grid-column: 4 / 6;
   grid-row: 1 / -5;
   max-width: 35vmax;
+  position: relative;
+  height: 40vw;
   ${media.tablet`
     max-width: unset;
     grid-column: 3 / 5;
@@ -68,10 +70,8 @@ export const ImageWrapper = styled.div`
   ${media.phablet`
     grid-column: 1 / 5;
     grid-row: 2;
-  `}
-
-  img {
+  `} /* img {
     width: 100%;
     height: auto;
-  }
+  } */
 `

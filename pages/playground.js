@@ -77,7 +77,7 @@ function Playground({ data, seo }) {
                   alt={item.attributes.alternativeText}
                   width={item.attributes.width}
                   height={item.attributes.height}
-                  sizes={`(max-width: ${sizes.phone}px) 100vw, (max-width: ${sizes.tablet}px) 33vw, 20vw`}
+                  sizes={`(min-width: ${sizes.tablet}px) 18.61vw, (min-width: ${sizes.phone}px) calc(33.33vw - 13px), 92.86vw`}
                   placeholder="blur"
                   blurDataURL={blurHashToDataURL(item.attributes.blurhash)}
                 />
