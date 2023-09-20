@@ -70,8 +70,6 @@ export const ImageWrapper = styled.div`
   ${media.phablet`
     grid-column: 1 / 5;
     grid-row: 2;
-  `} /* img {
-    width: 100%;
-    height: auto;
-  } */
+    height: 80vh;
+  `}
 `
