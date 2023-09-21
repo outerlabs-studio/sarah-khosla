@@ -70,21 +70,23 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
             </TitleWrapper>
           )}
           <DescriptionWrapper>
-            <Markdown
-              options={{
-                overrides: {
-                  p: {
-                    component: ArticleBaseText,
+            {doc.description && (
+              <Markdown
+                options={{
+                  overrides: {
+                    p: {
+                      component: ArticleBaseText,
+                    },
+                    a: {
+                      component: CustomLink,
+                      props: { target: '_blank', underline: true },
+                    },
                   },
-                  a: {
-                    component: CustomLink,
-                    props: { target: '_blank', underline: true },
-                  },
-                },
-              }}
-            >
-              {doc.description}
-            </Markdown>
+                }}
+              >
+                {doc.description}
+              </Markdown>
+            )}
           </DescriptionWrapper>
           <RoleWrapper>
             {doc.role && (
