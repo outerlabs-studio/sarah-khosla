@@ -13,9 +13,9 @@ import {
 } from 'components/about'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import ReactMarkdown from 'react-markdown'
 import { ArticleBaseText, sizes } from 'styles'
 import { blurHashToDataURL } from 'lib'
+import Markdown from 'markdown-to-jsx'
 
 function AboutItem({ item }) {
   if (item.__component === 'about.default') {
@@ -83,7 +83,19 @@ function About({ data, seo }) {
         <CustomContainer>
           <ContentWrapper>
             <DescriptionWrapper>
-              <ReactMarkdown
+              <Markdown
+                options={{
+                  overrides: {
+                    p: {
+                      component: ArticleBaseText,
+                      props: { nm: true },
+                    },
+                    a: {
+                      component: CustomLink,
+                      props: { target: '_blank', underline: true },
+                    },
+                  },
+                }}
                 components={{
                   p: ({ node, ...props }) => <ArticleBaseText nm {...props} />,
                   a: ({ node, ...props }) => (
@@ -92,7 +104,7 @@ function About({ data, seo }) {
                 }}
               >
                 {doc.description}
-              </ReactMarkdown>
+              </Markdown>
             </DescriptionWrapper>
             <ImageWrapper>
               <Image

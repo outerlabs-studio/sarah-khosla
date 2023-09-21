@@ -9,8 +9,8 @@ import {
   RoleWrapper,
 } from 'components/project'
 import { blurHashToDataURL } from 'lib'
+import Markdown from 'markdown-to-jsx'
 import Image from 'next/image'
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { ArticleBaseText, ArticleTitleText, Container } from 'styles'
 
 function Quativa({ params, data, setTheme, seo, nextProject }) {
@@ -70,16 +70,21 @@ function Quativa({ params, data, setTheme, seo, nextProject }) {
             </TitleWrapper>
           )}
           <DescriptionWrapper>
-            <ReactMarkdown
-              components={{
-                p: ({ node, ...props }) => <ArticleBaseText {...props} />,
-                a: ({ node, ...props }) => (
-                  <CustomLink {...props} target="_blank" underline />
-                ),
+            <Markdown
+              options={{
+                overrides: {
+                  p: {
+                    component: ArticleBaseText,
+                  },
+                  a: {
+                    component: CustomLink,
+                    props: { target: '_blank', underline: true },
+                  },
+                },
               }}
             >
               {doc.description}
-            </ReactMarkdown>
+            </Markdown>
           </DescriptionWrapper>
           <RoleWrapper>
             {doc.role && (
