@@ -10,7 +10,7 @@ const withPWA = require('next-pwa')({
 })
 const DuplicatePackageCheckerPlugin = require('@cerner/duplicate-package-checker-webpack-plugin')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === 'false',
 })
 
 const nextConfig = {

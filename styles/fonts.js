@@ -3,7 +3,6 @@ import localFont from 'next/font/local'
 const haffer = localFont({
   adjustFontFallback: 'Arial',
   variable: '--font',
-  preload: true,
   src: [
     {
       path: '../public/fonts/HafferSQ-Regular.woff2',
